@@ -22,8 +22,8 @@ const vt323 = VT323({
 });
 
 export const metadata: Metadata = {
-  title: "FINANCE | To The Moon",
-  description: "Join the Cult of FINANCE. To The Moon!",
+  title: "FINANCE",
+  description: "TO THE FINANCIAL FREEDOM",
 };
 
 export default function RootLayout({
