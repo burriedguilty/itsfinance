@@ -1,0 +1,47 @@
+import type { Metadata } from "next";
+import { Space_Mono, IBM_Plex_Mono, VT323 } from "next/font/google";
+import "./globals.css";
+import MetaHead from '@/components/MetaHead';
+
+const spaceMono = Space_Mono({
+  weight: ['400', '700'],
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  weight: ['400', '500', '700'],
+  variable: "--font-ibm-plex-mono",
+  subsets: ["latin"],
+});
+
+const vt323 = VT323({
+  weight: ['400'],
+  variable: "--font-vt323",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "FINANCE | To The Moon",
+  description: "Join the Cult of FINANCE. To The Moon!",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <head>
+        <MetaHead />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body
+        className={`${spaceMono.variable} ${ibmPlexMono.variable} ${vt323.variable} font-mono antialiased bg-background text-softWhite`}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}

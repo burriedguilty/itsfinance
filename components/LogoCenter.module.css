@@ -1,0 +1,144 @@
+/* Container for the logo with expanded area for glow */
+.logoContainer {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* Responsive logo sizing */
+.responsiveLogo {
+  width: 700px;
+  height: 300px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .logoContainer {
+    width: 90vw;
+    height: 40vw;
+    max-height: 400px;
+  }
+  
+  .responsiveLogo {
+    width: 80vw;
+    height: 35vw;
+    max-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoContainer {
+    width: 95vw;
+    height: 50vw;
+  }
+  
+  .responsiveLogo {
+    width: 90vw;
+    height: 45vw;
+  }
+}
+
+/* SVG with outer glow effect */
+.svgOuterGlow {
+  filter: url(#outer-glow);
+  transform-origin: center;
+}
+
+/* Animation speed variants */
+.animationSlow {
+  animation: glowBreath 5s ease-in-out infinite;
+}
+
+.animationMedium {
+  animation: glowBreath 3.2s ease-in-out infinite;
+}
+
+.animationFast {
+  animation: glowBreath 2s ease-in-out infinite;
+}
+
+/* Apply glow to all SVGs in logo container */
+.logoContainer svg {
+  filter: url(#outer-glow);
+}
+
+/* Dithered cyan glow effect */
+.ditheredGlow {
+  filter: url(#dither-pattern);
+  animation: pulseGlow 3s infinite alternate;
+}
+
+/* Separate glow background element */
+.glowBackground {
+  position: absolute;
+  width: 700px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  background: transparent;
+  box-shadow: 
+    0 0 40px 20px rgba(0, 255, 255, 0.4),
+    0 0 80px 40px rgba(0, 255, 255, 0.2),
+    0 0 120px 60px rgba(0, 255, 255, 0.1);
+  animation: pulseGlowBg 4s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    filter: brightness(0.9) url(#dither-pattern);
+  }
+  100% {
+    filter: brightness(1.1) url(#dither-pattern);
+  }
+}
+
+@keyframes glowBreath {
+  0%, 100% {
+    filter: url(#outer-glow) brightness(1) saturate(1);
+    transform: scale(1);
+  }
+  50% {
+    filter: url(#outer-glow) brightness(1.4) saturate(1.2);
+    transform: scale(1.01);
+  }
+}
+
+@keyframes pulseGlowBg {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Retro scan line effect to enhance the dithered look */
+.retroScanlines {
+  position: relative;
+}
+
+.retroScanlines::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+}

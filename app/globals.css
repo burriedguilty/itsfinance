@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000C1F;
+  --foreground: #EAEAEA;
+  --accent: #00FF88;
+  --secondary: #08F7FE;
+  --glow: #00FFCC;
+}
+
+/* Theme variables */
+:root {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-secondary: var(--secondary);
+  --color-glow: var(--glow);
+  --font-mono: var(--font-space-mono), var(--font-ibm-plex-mono), var(--font-vt323), monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-mono);
+  cursor: default;
+}
+
+/* Custom cursor styling */
+* {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill:none;stroke:%2308F7FE;stroke-width:2"><rect width="8" height="8" x="0" y="0" /></svg>') 0 0, auto;
+}
+
+a, button {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="fill:none;stroke:%2308F7FE;stroke-width:2"><polygon points="0,0 8,8 0,16" /></svg>') 0 0, pointer;
+}
+
+/* Custom scrollbar - blue neon */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--secondary); /* Changed to blue neon */
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--secondary); /* Added glow effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00DDFF; /* Slightly lighter blue on hover */
+  box-shadow: 0 0 8px #00DDFF; /* Enhanced glow on hover */
+}

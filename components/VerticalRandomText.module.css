@@ -1,0 +1,111 @@
+@font-face {
+  font-family: 'CustomVerticalFont';
+  src: url('/fonts/your-custom-font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.verticalTextColumn {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'CustomVerticalFont', monospace;
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  z-index: 10;
+  pointer-events: none;
+  transform: translateZ(0); /* Force GPU acceleration */
+  will-change: transform, opacity;
+}
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 768px) {
+  .verticalTextColumn {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+}
+
+/* Main character styles for the vertical text */
+
+.verticalChar {
+  color: rgba(220, 240, 255, 0.95);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+  transition: opacity 0.05s ease;
+}
+
+.visible {
+  opacity: 1;
+  animation: typingGlow 3s infinite alternate;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* Enhanced typing glow effect with blue-white color */
+@keyframes typingGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 5px rgba(255, 255, 255, 0.8),
+      0 0 8px rgba(255, 255, 255, 0.5),
+      0 0 12px rgba(8, 247, 254, 0.6),
+      0 0 15px rgba(8, 247, 254, 0.4);
+  }
+  50% {
+    text-shadow:
+      0 0 3px rgba(255, 255, 255, 0.6),
+      0 0 6px rgba(8, 247, 254, 0.8),
+      0 0 9px rgba(8, 247, 254, 0.5);
+  }
+}
+
+/* Variety in color tone - updated for the new structure */
+.verticalTextColumn:nth-child(odd) .verticalChar.visible {
+  color: rgba(235, 245, 255, 0.95);
+}
+
+.verticalTextColumn:nth-child(even) .verticalChar.visible {
+  color: rgba(200, 230, 255, 0.85);
+}
+
+/* Movement effects - optimized for performance */
+.falling {
+  transition: transform calc(var(--fall-speed, 2s)) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(calc(var(--fall-distance, 20%) * var(--typing-progress, 0)));
+}
+
+.fadingOut {
+  animation: fadeOutVertical 1s forwards ease-out;
+  will-change: opacity, transform;
+}
+
+@keyframes fadeOutVertical {
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+/* Add performance optimizations for devices that prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .verticalTextColumn {
+    transition-duration: 0.001ms !important;
+  }
+  
+  .verticalChar.visible {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  
+  .falling, .fadingOut {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
