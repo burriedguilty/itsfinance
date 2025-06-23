@@ -1,0 +1,17 @@
+@keyframes button-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(96, 165, 250, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+  }
+}
+
+.button-glow {
+  animation: button-glow 3s ease-in-out infinite;
+}
+
+.button-glow:hover {
+  animation: none;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+}

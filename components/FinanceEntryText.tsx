@@ -1,24 +1,29 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './FinanceEntryText.module.css';
 
 interface FinanceEntryTextProps {
   delay?: number; // Delay in ms before showing the component
   typingSpeed?: number; // Time in ms per character typing
   toastDuration?: number; // Duration in ms for toast notification
+
 }
 
 export default function FinanceEntryText({
   delay = 2000, // Default 2 seconds delay
   typingSpeed = 100, // Default 100ms per character
   toastDuration = 2000, // Default 2 seconds toast duration
+
 }: FinanceEntryTextProps) {
+  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false); // Start hidden for intro animation
   const [showContractAddress, setShowContractAddress] = useState(false); // Hide contract address until clicked
   const [typedText, setTypedText] = useState(''); // Start with empty text for typing animation
   const [isTypingComplete, setIsTypingComplete] = useState(false); // Typing starts incomplete
   const [showToast, setShowToast] = useState(false);
+  const [countdown, setCountdown] = useState<number | null>(null); // Countdown timer
   
   const mainText = 'ENTER THE FINANCE FREEDOM';
   const contractAddress = 'FSQ4CBemMh7SBAC6odzCaRCvQZPc5i4QTLTFTSAdpump';
@@ -70,6 +75,21 @@ export default function FinanceEntryText({
   const handleClick = () => {
     if (isTypingComplete) {
       setShowContractAddress(true);
+      
+      // Start countdown from 5
+      setCountdown(5);
+      
+      // Set up countdown interval
+      const countdownInterval = setInterval(() => {
+        setCountdown(prevCount => {
+          if (prevCount === 1) {
+            clearInterval(countdownInterval);
+            router.push('/homepage');
+            return 0;
+          }
+          return prevCount ? prevCount - 1 : null;
+        });
+      }, 1000);
     }
   };
   
@@ -104,6 +124,12 @@ export default function FinanceEntryText({
       {showToast && (
         <div className={styles.toast}>
           <span>Contract address copied to clipboard!</span>
+        </div>
+      )}
+      
+      {countdown !== null && (
+        <div className={styles.countdown}>
+          Entering SPX6900 Finance in {countdown}...
         </div>
       )}
     </div>

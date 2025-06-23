@@ -53,3 +53,24 @@ a, button {
   background: #00DDFF; /* Slightly lighter blue on hover */
   box-shadow: 0 0 8px #00DDFF; /* Enhanced glow on hover */
 }
+
+/* Ticker animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1rem;
+  white-space: nowrap;
+}
