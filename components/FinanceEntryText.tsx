@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
 import styles from './FinanceEntryText.module.css';
 
 interface FinanceEntryTextProps {
@@ -17,7 +16,6 @@ export default function FinanceEntryText({
   toastDuration = 2000, // Default 2 seconds toast duration
 
 }: FinanceEntryTextProps) {
-  const router = useRouter();
   const [isVisible, setIsVisible] = useState(false); // Start hidden for intro animation
   const [showContractAddress, setShowContractAddress] = useState(false); // Hide contract address until clicked
   const [typedText, setTypedText] = useState(''); // Start with empty text for typing animation
@@ -84,7 +82,7 @@ export default function FinanceEntryText({
         setCountdown(prevCount => {
           if (prevCount === 1) {
             clearInterval(countdownInterval);
-            router.push('/homepage');
+            window.location.href = '/homepage';
             return 0;
           }
           return prevCount ? prevCount - 1 : null;
