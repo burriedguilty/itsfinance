@@ -117,7 +117,7 @@ export default function LogoCenter({
               {/* SVG Logo with outer glow filter applied */}
               <div className={`relative z-10 ${styles.responsiveLogo}`}>
                 <Image
-                  src="/finance.svg"
+                  src="/finance.png"
                   alt="FINANCE"
                   fill
                   priority
