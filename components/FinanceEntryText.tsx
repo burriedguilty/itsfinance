@@ -129,7 +129,7 @@ export default function FinanceEntryText({
       
       {countdown !== null && (
         <div className={styles.countdown}>
-          Entering SPX6900 Finance in {countdown}...
+          Entering FINANCE in {countdown}...
         </div>
       )}
     </div>
