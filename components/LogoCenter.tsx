@@ -4,11 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import styles from './LogoCenter.module.css';
 
-interface LogoCenterProps {
-  // No props needed anymore
-}
-
-export default function LogoCenter({}: LogoCenterProps = {}) {
+export default function LogoCenter() {
   const [isVisible, setIsVisible] = useState(false);
   
   useEffect(() => {
