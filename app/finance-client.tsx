@@ -23,11 +23,7 @@ export default function FinanceClient() {
       {/* Logo container centered in viewport */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="z-10 w-auto h-auto">
-          <LogoCenter 
-            glowIntensity="high" 
-            glowColor="#FFFFFF" 
-            animationSpeed="medium" 
-          />
+          <LogoCenter />
         </div>
       </div>
       
