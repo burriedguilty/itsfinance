@@ -26,13 +26,21 @@ export const metadata: Metadata = {
   description: "TO THE FINANCIAL FREEDOM",
 };
 
+import { Noto_Sans_JP } from 'next/font/google';
+
+const notoSansJP = Noto_Sans_JP({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '700'],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={notoSansJP.className} suppressHydrationWarning>
       <head>
         <MetaHead />
         <link rel="icon" href="/favicon.ico" />

@@ -1,0 +1,76 @@
+.status-text {
+  position: relative;
+  font-family: monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #60A5FA;
+}
+
+.status-text.recording {
+  animation: recording-flash 2s infinite;
+}
+
+.status-text.live {
+  animation: text-flicker 3s linear infinite;
+}
+
+@keyframes recording-flash {
+  0%, 100% {
+    color: #60A5FA;
+    text-shadow: 
+      0 0 2px rgba(147,197,253,0.5),
+      0 0 4px rgba(147,197,253,0.3);
+  }
+  50% {
+    color: #93C5FD;
+    text-shadow: 
+      0 0 4px rgba(147,197,253,0.7),
+      0 0 8px rgba(147,197,253,0.5);
+  }
+}
+
+@keyframes text-flicker {
+  0%, 100% {
+    opacity: 1;
+    color: #60A5FA;
+    text-shadow: 
+      0 0 2px rgba(147,197,253,0.5),
+      0 0 4px rgba(147,197,253,0.3);
+    transform: skew(0deg);
+  }
+  10% {
+    opacity: 0.9;
+    color: #93C5FD;
+    text-shadow: none;
+    transform: skew(0.5deg);
+  }
+  20% {
+    opacity: 1;
+    color: #60A5FA;
+    text-shadow: 
+      0 0 4px rgba(147,197,253,0.7),
+      0 0 8px rgba(147,197,253,0.5);
+    transform: skew(-0.5deg);
+  }
+  30% {
+    opacity: 0.8;
+    color: #93C5FD;
+    text-shadow: none;
+    transform: skew(0.2deg);
+  }
+  40% {
+    opacity: 1;
+    color: #60A5FA;
+    text-shadow: 
+      0 0 3px rgba(147,197,253,0.6),
+      0 0 6px rgba(147,197,253,0.4);
+    transform: skew(-0.2deg);
+  }
+  50% {
+    opacity: 0.9;
+    color: #93C5FD;
+    text-shadow: 
+      0 0 2px rgba(147,197,253,0.5);
+    transform: skew(0.1deg);
+  }
+}
