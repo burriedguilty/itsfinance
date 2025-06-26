@@ -1,0 +1,52 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-2e3d6c163553416c.js",
+      "static/chunks/4bd1b696-6cb75c10e726e3fe.js",
+      "static/chunks/684-eea728a92784bfc3.js",
+      "static/chunks/main-app-ef89466b70744aee.js",
+      "static/chunks/app/_not-found/page-30a1b3e135978a56.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-2e3d6c163553416c.js",
+      "static/chunks/4bd1b696-6cb75c10e726e3fe.js",
+      "static/chunks/684-eea728a92784bfc3.js",
+      "static/chunks/main-app-ef89466b70744aee.js",
+      "static/css/056b27cc61b8274e.css",
+      "static/css/2e7bb5dcbc367682.css",
+      "static/css/60c67ada826aa092.css",
+      "static/chunks/app/layout-30101c6a870f312c.js"
+    ],
+    "/api/generate-pfp/route": [
+      "static/chunks/webpack-2e3d6c163553416c.js",
+      "static/chunks/4bd1b696-6cb75c10e726e3fe.js",
+      "static/chunks/684-eea728a92784bfc3.js",
+      "static/chunks/main-app-ef89466b70744aee.js",
+      "static/chunks/app/api/generate-pfp/route-fad78f82007fc99c.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-2e3d6c163553416c.js",
+      "static/chunks/4bd1b696-6cb75c10e726e3fe.js",
+      "static/chunks/684-eea728a92784bfc3.js",
+      "static/chunks/main-app-ef89466b70744aee.js",
+      "static/chunks/app/page-e65319d795ba10a2.js"
+    ],
+    "/pfpmaker/page": [
+      "static/chunks/webpack-2e3d6c163553416c.js",
+      "static/chunks/4bd1b696-6cb75c10e726e3fe.js",
+      "static/chunks/684-eea728a92784bfc3.js",
+      "static/chunks/main-app-ef89466b70744aee.js",
+      "static/css/57283fc001383cd7.css",
+      "static/chunks/766-abe3639a4f599740.js",
+      "static/chunks/47-92ef6bf120ee0004.js",
+      "static/chunks/app/pfpmaker/page-7ce277f8dacb1b93.js"
+    ],
+    "/homepage/page": [
+      "static/chunks/webpack-2e3d6c163553416c.js",
+      "static/chunks/4bd1b696-6cb75c10e726e3fe.js",
+      "static/chunks/684-eea728a92784bfc3.js",
+      "static/chunks/main-app-ef89466b70744aee.js",
+      "static/chunks/app/homepage/page-ee77b438b484aec4.js"
+    ]
+  }
+}

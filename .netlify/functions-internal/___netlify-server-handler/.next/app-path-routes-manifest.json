@@ -1,0 +1,8 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/generate-pfp/route": "/api/generate-pfp",
+  "/favicon.ico/route": "/favicon.ico",
+  "/homepage/page": "/homepage",
+  "/pfpmaker/page": "/pfpmaker",
+  "/page": "/"
+}

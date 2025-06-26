@@ -1,0 +1,91 @@
+functionsDirectory = "C:\\Users\\Titann\\Documents\\WS\\FinanceWeb\\netlify\\functions"
+functionsDirectoryOrigin = "default"
+redirectsOrigin = "inline"
+headersOrigin = "inline"
+
+[build]
+publish = "C:\\Users\\Titann\\Documents\\WS\\FinanceWeb\\.next"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm run build"
+functions = "C:\\Users\\Titann\\Documents\\WS\\FinanceWeb\\netlify\\functions"
+
+[build.environment]
+NEXT_USE_NETLIFY_EDGE = "true"
+NODE_VERSION = "18"
+
+[build.processing]
+skip_processing = true
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[images]
+remote_images = ["^(?:http(?:s)?:\\/\\/oaidalleapiprodscus\\.blob\\.core\\.windows\\.net(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$", "^(?:http(?:s)?:\\/\\/res\\.cloudinary\\.com(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$", "^(?:http(?:s)?:\\/\\/api\\.removal\\.ai(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$"]
+
+[functions]
+
+[functions."*"]
+external_node_modules = ["sharp"]
+
+[[plugins]]
+origin = "config"
+package = "@netlify/plugin-nextjs"
+pinned_version = "5"
+
+[plugins.inputs]
+
+[[headers]]
+for = "/_next/static/*"
+
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/api/:splat"
+status = 200.0
+force = true
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/_next/image"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200.0
+force = false
+
+[redirects.query]
+url = ":url"
+w = ":width"
+q = ":quality"
+
+[redirects.conditions]
+
+[redirects.headers]
+
+[[redirects]]
+from = "/_ipx/*"
+to = "/.netlify/images?url=:url&w=:width&q=:quality"
+status = 200.0
+force = false
+
+[redirects.query]
+url = ":url"
+w = ":width"
+q = ":quality"
+
+[redirects.conditions]
+
+[redirects.headers]
