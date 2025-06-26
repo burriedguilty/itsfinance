@@ -29,7 +29,7 @@ async function removeBackground(imageBuffer: Buffer): Promise<string> {
   console.log('🔑 Using Removal.AI API Key:', process.env.REMOVAL_AI_API_KEY?.substring(0, 8) + '...');
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+  const timeout = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
   try {
     const response = await fetch('https://api.removal.ai/3.0/remove', {
