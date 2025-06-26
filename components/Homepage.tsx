@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import GlitchHeading from './GlitchHeading';
@@ -16,8 +17,10 @@ const GlitchMarquee = dynamic(() => import('@/components/GlitchMarquee'), { ssr:
 // Import components with dynamic loading
 const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
 const DitheredBg = dynamic(() => import('@/components/DitheredBg'), { ssr: false });
+const PFPMakerPopup = dynamic(() => import('@/components/PFPMakerPopup'), { ssr: false });
 
 export default function Homepage() {
+  const [isPFPMakerOpen, setIsPFPMakerOpen] = useState(false);
   return (
     <div className="bg-background min-h-screen overflow-x-hidden relative">
       {/* Background layers */}
@@ -30,12 +33,29 @@ export default function Homepage() {
       
       {/* Header */}
       <header className="sticky top-0 z-30 w-full bg-black/70 backdrop-blur-sm border-b border-secondary/30">
-        <div className="container mx-auto px-4 py-2">
-          <Image src="/finance1.svg" alt="Finance Logo" width={48} height={48} />
+        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
+          <div className="flex items-center">
+            <Image
+              src="/finance1.svg"
+              alt="Finance Logo"
+              width={48}
+              height={48}
+            />
+          </div>
+          <button
+            onClick={() => setIsPFPMakerOpen(true)}
+            className="text-blue-300 hover:text-blue-100 transition-all duration-300 font-mono tracking-wider text-sm"
+          >
+            Create PFP
+          </button>
         </div>
       </header>
-      
 
+      {/* PFP Maker Popup */}
+      <PFPMakerPopup
+        isOpen={isPFPMakerOpen}
+        onClose={() => setIsPFPMakerOpen(false)}
+      />
       
       {/* Main content */}
       <main className="container mx-auto px-4 py-8 relative z-30">
