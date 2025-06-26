@@ -11,6 +11,14 @@ async function downloadAndConvertToBase64(url: string): Promise<string> {
 export async function generateImageWithReplicate(profileUrl: string, backgroundUrl: string): Promise<string> {
   console.log('🚀 Sending request to Replicate...');
 
+  // Check environment variables
+  if (!process.env.REPLICATE_API_TOKEN) {
+    throw new Error('REPLICATE_API_TOKEN is not set');
+  }
+  if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+    throw new Error('Missing Cloudinary environment variables');
+  }
+
   const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN,
   });

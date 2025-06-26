@@ -38,6 +38,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ imageUrl: finalImageUrl });
   } catch (error: unknown) {
     console.error('❌ Server error:', error);
+    console.error('Environment variables status:');
+    console.error('REPLICATE_API_TOKEN:', process.env.REPLICATE_API_TOKEN ? 'Set' : 'Not set');
+    console.error('CLOUDINARY_CLOUD_NAME:', process.env.CLOUDINARY_CLOUD_NAME ? 'Set' : 'Not set');
+    console.error('CLOUDINARY_API_KEY:', process.env.CLOUDINARY_API_KEY ? 'Set' : 'Not set');
+    console.error('CLOUDINARY_API_SECRET:', process.env.CLOUDINARY_API_SECRET ? 'Set' : 'Not set');
+    
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return NextResponse.json(
       { error: 'Internal Server Error', details: errorMessage },
