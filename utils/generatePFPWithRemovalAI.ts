@@ -20,7 +20,8 @@ import * as path from 'path';
 async function removeBackground(imageBuffer: Buffer): Promise<string> {
   // Create form data with buffer directly
   const form = new URLSearchParams();
-  form.append('image_base64', imageBuffer.toString('base64'));
+  form.append('image_url', imageBuffer.toString('base64'));
+  form.append('image_type', 'base64');
 
   console.log('🔑 Using Removal.AI API Key:', process.env.REMOVAL_AI_API_KEY?.substring(0, 8) + '...');
 
