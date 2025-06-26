@@ -10,7 +10,10 @@ cloudinary.config({
 });
 
 async function downloadImage(url: string): Promise<Buffer> {
-  const response = await axios.get(url, { responseType: 'arraybuffer' });
+  const response = await axios.get(url, { 
+    responseType: 'arraybuffer',
+    timeout: 5000 // 5 second timeout
+  });
   return Buffer.from(response.data);
 }
 
@@ -25,6 +28,9 @@ async function removeBackground(imageBuffer: Buffer): Promise<string> {
 
   console.log('🔑 Using Removal.AI API Key:', process.env.REMOVAL_AI_API_KEY?.substring(0, 8) + '...');
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
   try {
     const response = await fetch('https://api.removal.ai/3.0/remove', {
       method: 'POST',
@@ -32,7 +38,8 @@ async function removeBackground(imageBuffer: Buffer): Promise<string> {
         'Rm-Token': process.env.REMOVAL_AI_API_KEY as string,
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: form
+      body: form,
+      signal: controller.signal
     });
 
     if (!response.ok) {
@@ -46,6 +53,7 @@ async function removeBackground(imageBuffer: Buffer): Promise<string> {
     }
 
     const data = await response.json();
+    clearTimeout(timeout);
     console.log('✅ Removal.ai Response:', JSON.stringify(data, null, 2));
     
     // Get the high resolution result
@@ -89,13 +97,13 @@ export async function generatePFPWithRemovalAI(pfpUrl: string, bgUrl: string): P
 
     console.log('🎨 Compositing images...');
     try {
-      // Convert and resize background to 1024x1024
+      // Convert and resize background to 800x800 for faster processing
       const resizedBg = await sharp(bgBuffer)
-        .resize(1024, 1024, {
+        .resize(800, 800, {
           fit: 'cover',
           position: 'center'
         })
-        .jpeg()
+        .jpeg({ quality: 85 })
         .toBuffer();
       console.log('✅ Background resized successfully');
 
@@ -104,7 +112,7 @@ export async function generatePFPWithRemovalAI(pfpUrl: string, bgUrl: string): P
       const pfpAspectRatio = (pfpMetadata.width || 1) / (pfpMetadata.height || 1);
       
       // Calculate target dimensions to maintain aspect ratio
-      const targetSize = 950; // Increased base size for profile image
+      const targetSize = 750; // Reduced size for faster processing
       let pfpWidth = targetSize;
       let pfpHeight = targetSize;
       
@@ -127,7 +135,7 @@ export async function generatePFPWithRemovalAI(pfpUrl: string, bgUrl: string): P
       console.log('✅ Profile image resized successfully');
 
       // Calculate position for the profile image
-      const canvasSize = 1024;
+      const canvasSize = 800;
       const yOffset = 100; // Distance from bottom
       
       // Composite directly onto background
@@ -138,7 +146,7 @@ export async function generatePFPWithRemovalAI(pfpUrl: string, bgUrl: string): P
           left: Math.floor((canvasSize - pfpWidth) / 2), // Center horizontally
           top: yOffset // Distance from bottom
         }])
-        .jpeg({ quality: 90 })
+        .jpeg({ quality: 85 })
         .toBuffer();
       console.log('✅ Images composited successfully');
 
