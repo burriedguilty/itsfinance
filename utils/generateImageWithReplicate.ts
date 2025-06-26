@@ -76,6 +76,13 @@ export async function generateImageWithReplicate(profileUrl: string, backgroundU
     throw new Error('Unexpected output format from Replicate');
   } catch (error) {
     console.error('❌ Replicate generation failed:', error);
-    throw error;
+    if (error instanceof Error) {
+      console.error('Error details:', {
+        message: error.message,
+        name: error.name,
+        stack: error.stack
+      });
+    }
+    throw new Error(`Replicate generation failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }

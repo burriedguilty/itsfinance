@@ -12,6 +12,7 @@ interface GlitchImageProps {
 
 export default function GlitchImage({ src, alt, isGlitching = false }: GlitchImageProps) {
   const [glitchOffset, setGlitchOffset] = useState({ x: 0, y: 0 });
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     if (!isGlitching) return;
@@ -28,22 +29,34 @@ export default function GlitchImage({ src, alt, isGlitching = false }: GlitchIma
   
   if (!isGlitching) {
     return (
-      <div className="relative aspect-square">
+      <div className="relative aspect-square bg-[#001020]">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-400"></div>
+          </div>
+        )}
         <Image
           src={src}
           alt={alt}
           fill
-          className="object-contain rounded-lg"
+          className={`object-contain rounded-lg transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
+          onLoadingComplete={() => setIsLoading(false)}
         />
       </div>
     );
   }
   
   return (
-    <div className="relative aspect-square glitch-container">
+    <div className="relative aspect-square glitch-container bg-[#001020]">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center z-50">
+          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-400"></div>
+        </div>
+      )}
       <div className="glitch-image">
+
         <Image
           src={src}
           alt={alt}
@@ -51,6 +64,7 @@ export default function GlitchImage({ src, alt, isGlitching = false }: GlitchIma
           className="object-contain rounded-lg"
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
+          onLoadingComplete={() => setIsLoading(false)}
           style={{
             transform: `translate(${glitchOffset.x}px, ${glitchOffset.y}px)`
           }}
