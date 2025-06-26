@@ -18,11 +18,9 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 
 async function removeBackground(imageBuffer: Buffer): Promise<string> {
-  // Create form data with proper file name and type
-  const formData = new FormData();
-  const blob = new Blob([imageBuffer], { type: 'image/jpeg' });
-  const file = new File([blob], 'image.jpg', { type: 'image/jpeg' });
-  formData.append('image_file', file);
+  // Create form data with buffer directly
+  const form = new URLSearchParams();
+  form.append('image_base64', imageBuffer.toString('base64'));
 
   console.log('🔑 Using Removal.AI API Key:', process.env.REMOVAL_AI_API_KEY?.substring(0, 8) + '...');
 
@@ -30,9 +28,10 @@ async function removeBackground(imageBuffer: Buffer): Promise<string> {
     const response = await fetch('https://api.removal.ai/3.0/remove', {
       method: 'POST',
       headers: {
-        'Rm-Token': process.env.REMOVAL_AI_API_KEY as string
+        'Rm-Token': process.env.REMOVAL_AI_API_KEY as string,
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: formData
+      body: form
     });
 
     if (!response.ok) {
