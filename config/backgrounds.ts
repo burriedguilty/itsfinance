@@ -6,7 +6,8 @@ export interface Background {
 // Add backgrounds here, just provide the Cloudinary URLs
 export const backgrounds: Background[] = [
   { id: 1, path: 'https://res.cloudinary.com/dfjqqnv3x/image/upload/v1750919161/bg1.png' },
-  { id: 2, path: 'https://res.cloudinary.com/dfjqqnv3x/image/upload/v1750919161/bg1.png' }
+  { id: 2, path: 'https://res.cloudinary.com/dfjqqnv3x/image/upload/v1751046722/bg22.png' },
+  { id: 3, path: 'https://res.cloudinary.com/dfjqqnv3x/image/upload/v1751046727/bg3.png' },
   // Add more backgrounds by adding more objects with id and path
 ];
 
