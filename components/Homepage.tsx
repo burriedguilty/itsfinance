@@ -19,8 +19,10 @@ const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
 const DitheredBg = dynamic(() => import('@/components/DitheredBg'), { ssr: false });
 const PFPMakerPopup = dynamic(() => import('@/components/PFPMakerPopup'), { ssr: false });
 
+
 export default function Homepage() {
   const [isPFPMakerOpen, setIsPFPMakerOpen] = useState(false);
+
   return (
     <div className="bg-background min-h-screen overflow-x-hidden relative">
       {/* Background layers */}
@@ -42,12 +44,14 @@ export default function Homepage() {
               height={48}
             />
           </div>
-          <button
-            onClick={() => setIsPFPMakerOpen(true)}
-            className="text-blue-300 hover:text-blue-100 transition-all duration-300 font-mono tracking-wider text-sm"
-          >
-            Create PFP
-          </button>
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={() => setIsPFPMakerOpen(true)}
+              className="px-4 py-2 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 rounded font-mono tracking-wider transition-all text-sm shadow-sm shadow-blue-500/20 button-glow"
+            >
+              Create PFP
+            </button>
+          </div>
         </div>
       </header>
 
@@ -56,7 +60,7 @@ export default function Homepage() {
         isOpen={isPFPMakerOpen}
         onClose={() => setIsPFPMakerOpen(false)}
       />
-      
+
       {/* Main content */}
       <main className="container mx-auto px-4 py-8 relative z-30">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -157,7 +161,7 @@ export default function Homepage() {
                         </div>
                       </div>
                     </div>
-                    <p className="text-blue-100 font-mono text-sm tracking-wide text-right mt-32">
+                    <p className="text-blue-100 font-mono text-sm tracking-wide text-center mt-32">
                       This isn&apos;t just finance.<br/>
                       This is control.
                     </p>

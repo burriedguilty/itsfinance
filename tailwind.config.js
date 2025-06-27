@@ -27,6 +27,7 @@ module.exports = {
         'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
         'matrix-rain': 'matrix-rain 20s linear infinite',
         'blink': 'blink 1s infinite',
+        'fadeIn': 'fadeIn 0.5s ease-out forwards',
       },
       keyframes: {
         'glow-pulse': {
@@ -83,6 +84,10 @@ module.exports = {
         blink: {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },

@@ -128,47 +128,46 @@ export async function generatePFPWithRemovalAI(pfpUrl: string, bgUrl: string): P
       const pfpAspectRatio = (pfpMetadata.width || 1) / (pfpMetadata.height || 1);
       
       const canvasSize = 800;
-      const topMarginPercent = 0.20; // 20% margin at top
-      const topMargin = Math.round(canvasSize * topMarginPercent);
-      const availableHeight = canvasSize - topMargin;
-
-      // Calculate dimensions that maintain aspect ratio and touch edges
-      const targetWidth = canvasSize;
-      let targetHeight = Math.round(targetWidth / pfpAspectRatio);
-
-      // If image would be too tall for available space, scale it down
-      if (targetHeight > availableHeight) {
-        targetHeight = availableHeight;
+      // We want the image to fill 80% of vertical space
+      const fillPercent = 0.80; // Image should take up 80% of height
+      
+      // Calculate initial dimensions based on 80% height
+      let targetHeight = Math.floor(canvasSize * fillPercent);
+      let targetWidth = Math.floor(targetHeight * pfpAspectRatio);
+      
+      // If width exceeds canvas, scale down proportionally
+      if (targetWidth > canvasSize) {
+        targetWidth = canvasSize;
+        // Recalculate height but maintain minimum 80% height
+        const newHeight = Math.floor(targetWidth / pfpAspectRatio);
+        targetHeight = Math.max(newHeight, Math.floor(canvasSize * fillPercent));
       }
+      
+      // Final rounding to ensure clean integers
+      targetWidth = Math.floor(targetWidth);
+      // targetHeight already floored in previous calculations
 
-      // First resize to target width while maintaining aspect ratio
+      // Resize with calculated dimensions
       console.log('💾 Processing transparent PFP...', { width: targetWidth, height: targetHeight });
       const resizedPfp = await sharp(transparentPfpBuffer)
-        .resize(targetWidth, null, { // null height to maintain aspect ratio
-          fit: 'cover',
+        .resize(targetWidth, targetHeight, {
+          fit: 'inside',
           position: 'center'
-        })
-        // Then crop to target height from the bottom
-        .extract({
-          left: 0,
-          top: Math.max(0, targetHeight - availableHeight), // If image is too tall, crop from top
-          width: targetWidth,
-          height: Math.min(targetHeight, availableHeight)
         })
         .toBuffer();
       console.log('✅ Profile image resized successfully');
 
-      // Calculate vertical position to ensure top margin
-      const bottomSpace = canvasSize - (topMargin + targetHeight);
-      const yPosition = Math.max(topMargin, canvasSize - targetHeight); // Either at top margin or pushed down if too tall
+      // Center horizontally and position at bottom
+      const xPosition = Math.floor((canvasSize - targetWidth) / 2);
+      const yPosition = canvasSize - targetHeight; // Stick to bottom
       
       // Composite directly onto background
       const finalImage = await sharp(resizedBg)
         .composite([{
           input: resizedPfp,
-          gravity: 'north', // Align from top
-          left: 0,
-          top: yPosition // Position from top with margin
+          gravity: 'north',
+          left: xPosition,
+          top: yPosition
         }])
         .jpeg({ quality: 85 })
         .toBuffer();
