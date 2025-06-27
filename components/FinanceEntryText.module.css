@@ -14,12 +14,19 @@
   min-height: 60px;
 }
 
+.textContainer {
+  position: relative;
+  display: inline-block;
+}
+
 .mainText {
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 2px;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
   margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* Responsive text sizes */
@@ -138,4 +145,22 @@
 @keyframes pulse {
   from { opacity: 0.7; text-shadow: 0 0 5px rgba(0, 240, 255, 0.5); }
   to { opacity: 1; text-shadow: 0 0 15px rgba(0, 240, 255, 0.9); }
+}
+
+.clickEffect {
+  position: absolute;
+  color: #ff0000;
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+  animation: clickPulse 0.5s infinite alternate;
+  pointer-events: none;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  white-space: nowrap;
+}
+
+@keyframes clickPulse {
+  from { opacity: 0.7; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1.05); }
 }

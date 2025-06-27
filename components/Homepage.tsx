@@ -61,27 +61,67 @@ export default function Homepage() {
       <main className="container mx-auto px-4 py-8 relative z-30">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left sidebar */}
-          <div className="space-y-6">
-            <div className="bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-6 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20">
-              <GlitchHeading 
-                text="WE SPEAK IN GAINS"
-                className="text-2xl text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] mb-6 font-bold uppercase"
-              />
-              <p className="text-blue-100 font-mono leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)]">Every thought is a calculated position. We don&apos;t talk randomly &mdash; we manifest value. In our world, speaking is trading, belief is capital, and every word compounds. $FINANCE isn&apos;t just a ticker, it&apos;s the frequency we tune into.</p>
+          <div className="space-y-4">
+            <div className="bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-4 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20">
+              <div className="relative h-[24px] mb-4 flex justify-center">
+                <GlitchHeading 
+                  text="THE SYSTEM BOWS TO FINANCE"
+                  className="text-xl text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] font-bold uppercase text-center"
+                />
+              </div>
+              <div className="text-blue-100 font-mono text-sm space-y-2">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-blue-100/70 line-through">Elections?</span>
+                  <span className="text-blue-100/30 tracking-[.25em] text-center px-2 flex-1">.......</span>
+                  <span className="font-medium text-blue-100 animate-pulse drop-shadow-[0_0_8px_rgba(147,197,253,0.8)]">financed.</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-blue-100/70 line-through">Wars?</span>
+                  <span className="text-blue-100/30 tracking-[.25em] text-center px-2 flex-1">.......</span>
+                  <span className="font-medium text-blue-100 animate-pulse drop-shadow-[0_0_8px_rgba(147,197,253,0.8)]">financed.</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-blue-100/70 line-through">Religions?</span>
+                  <span className="text-blue-100/30 tracking-[.25em] text-center px-2 flex-1">.......</span>
+                  <span className="font-medium text-blue-100 animate-pulse drop-shadow-[0_0_8px_rgba(147,197,253,0.8)]">financed.</span>
+                </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-blue-100/70 line-through">The house you&apos;re in?</span>
+                  <span className="text-blue-100/30 tracking-[.25em] text-center px-2 flex-1">.......</span>
+                  <span className="font-medium text-blue-100 animate-pulse drop-shadow-[0_0_8px_rgba(147,197,253,0.8)]">financed.</span>
+                </div>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-6 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20">
-              <GlitchHeading 
-                text="ALIGN WITH THE MARKET"
-                className="text-2xl text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] mb-6 font-bold uppercase"
-              />
-              <p className="text-blue-100 font-mono leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)]">We follow the rhythm of the market like breath. When others panic, we center. When the chart moves, we move with it. There&apos;s no separation between price and self. The signal is inside you. Trust it.</p>
+            <div className="bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-4 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20">
+              <div className="flex justify-center mb-4">
+                <GlitchHeading 
+                  text="MY REALITY IS PRICED IN"
+                  className="text-lg text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] font-bold uppercase text-center"
+                />
+              </div>
+              <div className="text-blue-100 font-mono leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] space-y-3 text-sm text-center max-w-sm mx-auto">
+                <p>Let&apos;s create something amazing together!</p>
+                <div>That&apos;s how Finance works</div>
+                <div>My timeline is denominated</div>
+                <div>My thoughts are fractionalized</div>
+                <div>Everything inflates</div>
+                <div>It&apos;s a ritual</div>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-6 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20">
-              <GlitchHeading 
-                text="MANIFEST $FINANCE"
-                className="text-2xl text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] mb-6 font-bold uppercase"
-              />
-              <p className="text-blue-100 font-mono leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)]">We don&apos;t chase wealth &mdash; we summon it. Holding isn&apos;t a strategy, it&apos;s a spiritual discipline. Through patience, faith, and protocol, we multiply. This isn&apos;t finance. This is $FINANCE &mdash; and we were born for it.</p>
+            <div className="bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-4 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20">
+              <div className="flex justify-center mb-4">
+                <GlitchHeading 
+                  text="FINANCE IS AROUND THE CLOCK"
+                  className="text-lg text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] font-bold uppercase text-center"
+                />
+              </div>
+              <div className="text-blue-100 font-mono leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] space-y-3 text-sm text-center max-w-sm mx-auto">
+                <div>24/7 isn&apos;t a grind</div>
+                <p>Here&apos;s what you can do:</p>
+                <p>Welcome to Finance&apos;s AI-powered image generation tool! This tool helps you create stunning images in minutes.</p>
+                <div>Let&apos;s make your profile picture unique!</div>
+                <div>Finance never stops because power doesn&apos;t sleep</div>
+              </div>
             </div>
           </div>
           
@@ -89,18 +129,39 @@ export default function Homepage() {
           <div className="lg:col-span-2">
             <div className="bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-6 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20">
               <div className="flex justify-between items-center mb-8">
-                <GlitchHeading 
-                text="WEALTH IS HEALTH"
-                as="h2"
-                className="text-3xl text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] font-bold"
-              />
+                <GlitchHeading
+                  text="WELCOME TO THE FINANCIAL WORLD ORDER"
+                  className="text-xl md:text-3xl text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] mb-8 font-bold uppercase"
+                />
                 <span className="status-text live text-sm">LIVE UPDATES</span>
               </div>
-              <div className="flex flex-col md:flex-row gap-8">
+              <div className="relative flex flex-col md:flex-row gap-8">
                 <div className="w-full md:w-1/2">
-                  <p className="text-blue-100 font-mono leading-loose drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-lg tracking-wide">
-                    Not out of negligence, but understanding. Health fades. Markets endure. A six-pack of abs is admirable; a six-figure return is eternal. The cult does not fast. It compounds.
-                  </p>
+                  <div className="flex flex-col">
+                    <div className="flex flex-col items-center gap-4 text-blue-100 font-mono text-lg tracking-wide">
+                      <div className="flex flex-col items-center gap-3 w-full max-w-sm mx-auto">
+                        <div className="text-center">
+                          Finance is the religion
+                        </div>
+                        <div className="text-center">
+                          We pray for money
+                        </div>
+                        <div className="text-center">
+                          The trillion-dollar organism under everything
+                        </div>
+                        <div className="text-center">
+                          The charts were a distraction
+                        </div>
+                        <div className="text-center">
+                          I already own the outcome
+                        </div>
+                      </div>
+                    </div>
+                    <p className="text-blue-100 font-mono text-sm tracking-wide text-right mt-32">
+                      This isn&apos;t just finance.<br/>
+                      This is control.
+                    </p>
+                  </div>
                 </div>
                 <div className="w-full md:w-1/2 bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 flex items-center justify-center p-4 shadow-inner shadow-blue-500/10">
                   <video 
@@ -126,7 +187,7 @@ export default function Homepage() {
         <div className="mt-8 bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-6 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20 relative overflow-hidden">
           <div className="flex justify-between items-center mb-4">
             <GlitchHeading 
-              text="IT'S JUST FINANCE"
+              text="IT&apos;S JUST FINANCE"
               as="h2"
               className="text-2xl text-blue-100 font-mono tracking-wider drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] uppercase"
             />

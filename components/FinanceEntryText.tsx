@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import styles from './FinanceEntryText.module.css';
+import LoadingTerminal from './LoadingTerminal';
 
 interface FinanceEntryTextProps {
   delay?: number; // Delay in ms before showing the component
@@ -21,9 +22,12 @@ export default function FinanceEntryText({
   const [typedText, setTypedText] = useState(''); // Start with empty text for typing animation
   const [isTypingComplete, setIsTypingComplete] = useState(false); // Typing starts incomplete
   const [showToast, setShowToast] = useState(false);
+  const [showClick, setShowClick] = useState(false); // Control [CLICK] visibility
+  const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 }); // Control [CLICK] position
   const [countdown, setCountdown] = useState<number | null>(null); // Countdown timer
+  const [showLoadingTerminal, setShowLoadingTerminal] = useState(false);
   
-  const mainText = 'ENTER THE FINANCE FREEDOM';
+  const mainText = 'THEY DIDN\'T WANT YOU TO FIND THIS';
   const contractAddress = 'FSQ4CBemMh7SBAC6odzCaRCvQZPc5i4QTLTFTSAdpump';
   
   // Handle visibility after delay
@@ -35,7 +39,7 @@ export default function FinanceEntryText({
     return () => clearTimeout(timer);
   }, [delay]);
   
-  // Handle typing animation
+  // Handle typing animation and random [CLICK] effect
   useEffect(() => {
     if (!isVisible) return;
     
@@ -47,6 +51,19 @@ export default function FinanceEntryText({
       } else {
         clearInterval(typingInterval);
         setIsTypingComplete(true);
+        
+        // Start random [CLICK] effect after typing is complete
+        const clickInterval = setInterval(() => {
+          // Generate random position within -100px to 100px range
+          const newPosition = {
+            x: Math.random() * 200 - 100,
+            y: Math.random() * 200 - 100
+          };
+          setClickPosition(newPosition);
+          setShowClick(prev => !prev);
+        }, Math.random() * 1000 + 500); // Random interval between 500ms and 1500ms
+        
+        return () => clearInterval(clickInterval);
       }
     }, typingSpeed);
     
@@ -73,19 +90,17 @@ export default function FinanceEntryText({
   const handleClick = () => {
     if (isTypingComplete) {
       setShowContractAddress(true);
-      
-      // Start countdown from 5
-      setCountdown(5);
+      setCountdown(3);
       
       // Set up countdown interval
       const countdownInterval = setInterval(() => {
         setCountdown(prevCount => {
-          if (prevCount === 1) {
+          if (!prevCount || prevCount <= 1) {
             clearInterval(countdownInterval);
-            window.location.href = '/homepage';
+            setShowLoadingTerminal(true);
             return 0;
           }
-          return prevCount ? prevCount - 1 : null;
+          return prevCount - 1;
         });
       }, 1000);
     }
@@ -100,14 +115,34 @@ export default function FinanceEntryText({
     return null;
   }
   
+  if (showLoadingTerminal) {
+    return (
+      <div className="fixed inset-0 z-50">
+        <LoadingTerminal />
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
-      <div
-        className={`${styles.mainText} ${isTypingComplete ? styles.clickable : ''}`}
-        onClick={handleClick}
-      >
-        {typedText}
-        {!isTypingComplete && <span className={styles.cursor}>|</span>}
+      <div className={styles.textContainer}>
+        <div
+          className={`${styles.mainText} ${isTypingComplete ? styles.clickable : ''}`}
+          onClick={handleClick}
+        >
+          {typedText}
+          {!isTypingComplete && <span className={styles.cursor}>|</span>}
+        </div>
+        {isTypingComplete && showClick && (
+          <span 
+            className={styles.clickEffect}
+            style={{
+              transform: `translate(${clickPosition.x}px, ${clickPosition.y}px)`
+            }}
+          >
+            [CLICK]
+          </span>
+        )}
       </div>
       
       {showContractAddress && (
@@ -127,7 +162,7 @@ export default function FinanceEntryText({
       
       {countdown !== null && (
         <div className={styles.countdown}>
-          Entering FINANCE in {countdown}...
+          Entering the Terminal...
         </div>
       )}
     </div>

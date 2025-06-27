@@ -10,11 +10,27 @@ cloudinary.config({
 });
 
 async function downloadImage(url: string): Promise<Buffer> {
-  const response = await axios.get(url, { 
-    responseType: 'arraybuffer',
-    timeout: 5000 // 5 second timeout
-  });
-  return Buffer.from(response.data);
+  const maxRetries = 3;
+  let lastError;
+
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await axios.get(url, { 
+        responseType: 'arraybuffer',
+        timeout: 30000 // 30 second timeout
+      });
+      return Buffer.from(response.data);
+    } catch (error) {
+      const err = error as Error;
+      console.log(`Download attempt ${attempt} failed:`, err.message);
+      lastError = err;
+      if (attempt < maxRetries) {
+        await new Promise(resolve => setTimeout(resolve, 1000 * attempt)); // Exponential backoff
+      }
+    }
+  }
+
+  throw lastError;
 }
 
 import * as fs from 'fs/promises';
@@ -68,7 +84,7 @@ async function removeBackground(imageBuffer: Buffer): Promise<string> {
   }
 }
 
-async function uploadToCloudinary(imageBuffer: Buffer): Promise<string> {
+export async function uploadToCloudinary(imageBuffer: Buffer): Promise<string> {
   return new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload_stream({ resource_type: 'image' }, (error, result) => {
@@ -111,40 +127,48 @@ export async function generatePFPWithRemovalAI(pfpUrl: string, bgUrl: string): P
       const pfpMetadata = await sharp(transparentPfpBuffer).metadata();
       const pfpAspectRatio = (pfpMetadata.width || 1) / (pfpMetadata.height || 1);
       
-      // Calculate target dimensions to maintain aspect ratio
-      const targetSize = 750; // Reduced size for faster processing
-      let pfpWidth = targetSize;
-      let pfpHeight = targetSize;
-      
-      if (pfpAspectRatio > 1) {
-        // Image is wider than tall
-        pfpHeight = Math.round(targetSize / pfpAspectRatio);
-      } else {
-        // Image is taller than wide
-        pfpWidth = Math.round(targetSize * pfpAspectRatio);
+      const canvasSize = 800;
+      const topMarginPercent = 0.20; // 20% margin at top
+      const topMargin = Math.round(canvasSize * topMarginPercent);
+      const availableHeight = canvasSize - topMargin;
+
+      // Calculate dimensions that maintain aspect ratio and touch edges
+      const targetWidth = canvasSize;
+      let targetHeight = Math.round(targetWidth / pfpAspectRatio);
+
+      // If image would be too tall for available space, scale it down
+      if (targetHeight > availableHeight) {
+        targetHeight = availableHeight;
       }
 
-      // Process the transparent PFP
-      console.log('💾 Processing transparent PFP...', { width: pfpWidth, height: pfpHeight });
+      // First resize to target width while maintaining aspect ratio
+      console.log('💾 Processing transparent PFP...', { width: targetWidth, height: targetHeight });
       const resizedPfp = await sharp(transparentPfpBuffer)
-        .resize(pfpWidth, pfpHeight, {
-          fit: 'contain',
-          background: { r: 0, g: 0, b: 0, alpha: 0 }
+        .resize(targetWidth, null, { // null height to maintain aspect ratio
+          fit: 'cover',
+          position: 'center'
+        })
+        // Then crop to target height from the bottom
+        .extract({
+          left: 0,
+          top: Math.max(0, targetHeight - availableHeight), // If image is too tall, crop from top
+          width: targetWidth,
+          height: Math.min(targetHeight, availableHeight)
         })
         .toBuffer();
       console.log('✅ Profile image resized successfully');
 
-      // Calculate position for the profile image
-      const canvasSize = 800;
-      const yOffset = 100; // Distance from bottom
+      // Calculate vertical position to ensure top margin
+      const bottomSpace = canvasSize - (topMargin + targetHeight);
+      const yPosition = Math.max(topMargin, canvasSize - targetHeight); // Either at top margin or pushed down if too tall
       
       // Composite directly onto background
       const finalImage = await sharp(resizedBg)
         .composite([{
           input: resizedPfp,
-          gravity: 'south',
-          left: Math.floor((canvasSize - pfpWidth) / 2), // Center horizontally
-          top: yOffset // Distance from bottom
+          gravity: 'north', // Align from top
+          left: 0,
+          top: yPosition // Position from top with margin
         }])
         .jpeg({ quality: 85 })
         .toBuffer();
