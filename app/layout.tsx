@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Space_Mono, IBM_Plex_Mono, VT323 } from "next/font/google";
 import "./globals.css";
 import "./chaos.css";
-import SillyButton from '@/components/SillyButton';
+
 import MetaHead from '@/components/MetaHead';
 
 const spaceMono = Space_Mono({
@@ -56,7 +56,6 @@ export default function RootLayout({
         }}
       >
         {children}
-        <SillyButton />
       </body>
     </html>
   );
