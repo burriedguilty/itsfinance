@@ -171,9 +171,7 @@ export default function FinanceEntryText({
       )}
       
       {countdown !== null && (
-        <div className={styles.countdown}>
-          DEPLOYING CAPITAL . . .
-        </div>
+        <div className={`${styles.countdown} font-georgia normal-case`}>deploying capital . . .</div>
       )}
     </div>
   );

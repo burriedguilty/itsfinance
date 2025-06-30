@@ -167,7 +167,7 @@ export default function Homepage() {
               </div>
               <div className={`relative flex flex-col md:flex-row gap-8 ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                 <div className={`w-full md:w-1/2 ${isSillyMode ? 'chaos-pulse-grow' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col justify-center h-full">
                     <div className={`flex flex-col items-center gap-4 text-blue-100 font-georgia text-lg tracking-wide ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                       <div className={`flex flex-col items-center gap-3 w-full max-w-sm mx-auto ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                         <div className={`text-center ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
@@ -184,7 +184,9 @@ export default function Homepage() {
                         </div>
                       </div>
                     </div>
-                    <p className={`text-blue-100/70 text-sm mt-2 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>This isn&apos;t just finance.<br/>This is control.</p>
+                    <div className="flex flex-1 items-center justify-center">
+                      <p className={`text-blue-100/70 text-sm mt-2 text-center ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>This isn&apos;t just finance.<br/>This is control.</p>
+                    </div>
                   </div>
                 </div>
                 <div className={`w-full md:w-1/2 bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 flex items-center justify-center p-4 shadow-inner shadow-blue-500/10 transition-all duration-500 ${isSillyMode ? 'bg-opacity-30 backdrop-blur-sm' : ''} ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
@@ -215,9 +217,12 @@ export default function Homepage() {
             </h2>
             <span className={`status-text recording text-sm font-georgia ${isSillyMode ? 'chaos-colors chaos-bounce' : ''}`}>FINANCE RUNS EVERYTHING</span>
           </div>
-          <div className={`flex flex-col md:flex-row gap-6 ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-            <div className={`w-full md:w-1/2 flex justify-center items-center ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                <div className="w-fit h-fit bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 shadow-inner shadow-blue-500/10 transition-all duration-500 ${isSillyMode ? 'bg-opacity-30 backdrop-blur-sm' : ''}">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+            {/* Video Section */}
+            <div className="flex justify-center">
+              <div className={`relative w-fit ${isSillyMode ? 'chaos-distort' : ''}`} 
+                style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                <div className="bg-[#001020] rounded-xl overflow-hidden border border-blue-400/20 shadow-lg shadow-blue-500/10 transition-all duration-500">
                   <video 
                     src="/vid2.mp4" 
                     className={`w-auto h-auto max-w-full ${isSillyMode ? 'chaos-zoom' : ''}`}
@@ -227,20 +232,15 @@ export default function Homepage() {
                     playsInline
                   />
                 </div>
+              </div>
             </div>
-            <div className="w-full md:w-1/2 flex flex-col items-center">
-              <a href="https://itsjust.finance" className={isSillyMode ? 'chaos-zoom' : ''}>
-                <Image
-                  src="/finance.png"
-                  alt="Finance Logo"
-                  width={384}
-                  height={384}
-                  className={isSillyMode ? 'chaos-colors' : ''}
-                />
-              </a>
+
+            {/* Text Content */}
+            <div className="flex flex-col justify-center">
               <p className={`text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-center mt-6 text-lg max-w-2xl mx-auto ${isSillyMode ? 'chaos-colors chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 3 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                 In this world, Finance is no longer a tool &mdash; it is the source, the truth, the deity. When the blockchain shattered the veil of FINANCE, old paradigms fell. Economies once bound by productivity and policy were reborn through liquidity and leverage. Traditional systems crumbled under the weight of exponential growth, and in their place rose a faith-based economy, where numbers ascend as doctrine and price becomes prophecy.
               </p>
+
               <div className={`mt-auto pt-8 flex flex-wrap gap-3 justify-center ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                 <a 
                   href="https://x.com/FinanceCoinSOL" 
