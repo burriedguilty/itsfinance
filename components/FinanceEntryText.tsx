@@ -172,7 +172,7 @@ export default function FinanceEntryText({
       
       {countdown !== null && (
         <div className={styles.countdown}>
-          Entering the Terminal...
+          DEPLOYING CAPITAL . . .
         </div>
       )}
     </div>
