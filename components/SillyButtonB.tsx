@@ -59,13 +59,31 @@ export default function SillyButtonB({ onActivate, isActive: externalIsActive = 
           hover:scale-110
         `}
       >
-        <span className={`
-          inline-block transform transition-transform
-          ${isAnimating ? 'animate-bounce' : ''}
-          ${externalIsActive && showSillyEffects ? 'chaos-colors chaos-text-wave' : ''}
-        `}>
-          {externalIsActive ? 'NORMAL MODE' : 'FINANCE MODE'}
-        </span>
+        <span
+  className={`
+    flex flex-col items-center justify-center w-full h-full
+    text-[0.5rem] sm:text-[0.55rem] leading-none
+    font-semibold tracking-wide
+    transform transition-transform
+    ${isAnimating ? 'animate-bounce' : ''}
+    ${externalIsActive && showSillyEffects ? 'chaos-colors chaos-text-wave' : ''}
+  `}
+  style={{ fontSize: '0.5rem', textAlign: 'center', lineHeight: 1, padding: '0 2px' }}
+>
+  {externalIsActive ? (
+    <>
+      NORMAL
+      <br />
+      MODE
+    </>
+  ) : (
+    <>
+      FINANCE
+      <br />
+      MODE
+    </>
+  )}
+</span>
       </button>
 
       {/* Warning tooltip */}

@@ -137,9 +137,9 @@ export default function Homepage() {
               </div>
             </div>
             <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] neon-border p-4 transition-all duration-500 ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-              <div className="flex justify-center mb-4">
-                <div className={isSillyMode ? 'chaos-text-wave' : ''} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                  <h2 className="!font-georgia text-2xl text-blue-300 mb-4">
+              <div className="flex justify-center items-center w-full mb-4">
+                <div className={`w-full text-center ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  <h2 className="!font-georgia text-2xl text-blue-300 mb-4 mx-auto">
                     FINANCE IS AROUND THE CLOCK
                   </h2>
                 </div>
