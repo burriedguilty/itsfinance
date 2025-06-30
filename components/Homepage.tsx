@@ -3,7 +3,7 @@
 import { useApp } from '@/context/AppContext';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import MagneticVideoScroll from './MagneticVideoScroll';
+// import MagneticVideoScroll from './MagneticVideoScroll';
 
 import '@/styles/metallic.css';
 import '@/styles/video-container.css';
@@ -20,7 +20,7 @@ const VerticalRandomText = dynamic(() => import('@/components/VerticalRandomText
 const GlitchMarquee = dynamic(() => import('@/components/GlitchMarquee'), { ssr: false });
 
 // Import components with dynamic loading
-const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
+// const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
 
 export default function Homepage() {
   const { isSillyMode } = useApp();
@@ -216,15 +216,17 @@ export default function Homepage() {
             <span className={`status-text recording text-sm font-georgia ${isSillyMode ? 'chaos-colors chaos-bounce' : ''}`}>FINANCE RUNS EVERYTHING</span>
           </div>
           <div className={`flex flex-col md:flex-row gap-6 ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-            <div className={`w-full md:w-1/2 bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 flex items-center justify-center p-4 shadow-inner shadow-blue-500/10 transition-all duration-500 ${isSillyMode ? 'bg-opacity-30 backdrop-blur-sm' : ''} ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-              <video 
-                src="/vid2.mp4" 
-                className={`w-full h-full object-cover ${isSillyMode ? 'chaos-zoom' : ''}`}
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-              />
+            <div className={`w-full md:w-1/2 flex justify-center items-center ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                <div className="w-fit h-fit bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 shadow-inner shadow-blue-500/10 transition-all duration-500 ${isSillyMode ? 'bg-opacity-30 backdrop-blur-sm' : ''}">
+                  <video 
+                    src="/vid2.mp4" 
+                    className={`w-auto h-auto max-w-full ${isSillyMode ? 'chaos-zoom' : ''}`}
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                  />
+                </div>
             </div>
             <div className="w-full md:w-1/2 flex flex-col items-center">
               <a href="https://itsjust.finance" className={isSillyMode ? 'chaos-zoom' : ''}>
@@ -270,20 +272,9 @@ export default function Homepage() {
         </div>
       </main>
 
-      {/* Video Section Trigger */}
-      <div id="video-trigger" className="h-screen relative z-20 flex items-center justify-center">
-        <div className="text-blue-300 text-xl font-georgia font-georgia animate-bounce">
-          Scroll to explore more
-        </div>
-      </div>
-
-      {/* Magnetic Video Scroll Section */}
-      <MagneticVideoScroll />
+      {/* Video trigger and magnetic scroll sections temporarily disabled */}
       
-      {/* Footer */}
-      <div className={`mt-12 w-full ${isSillyMode ? 'chaos-shake-hard' : ''}`}>
-        <Footer />
-      </div>
+      {/* We're temporarily hiding the footer while magnetic scroll is disabled */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface SillyButtonBProps {
   onActivate: () => void;
@@ -9,32 +9,36 @@ interface SillyButtonBProps {
 
 export default function SillyButtonB({ onActivate, isActive: externalIsActive = false }: SillyButtonBProps) {
   const [isAnimating, setIsAnimating] = useState(false);
-  const [, setShowChaos] = useState(false);
-
-  useEffect(() => {
-    if (externalIsActive) {
-      const timer = setTimeout(() => {
-        setShowChaos(true);
-      }, 2500);
-      return () => clearTimeout(timer);
-    } else {
-      setShowChaos(false);
-    }
-  }, [externalIsActive]);
+  const [showSillyEffects, setShowSillyEffects] = useState(false);
 
   const handleClick = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    
-    // Trigger activation after a short delay
-    setTimeout(() => {
+    if (!externalIsActive) {
+      // Going into FINANCE MODE
+      setIsAnimating(true);
+      setShowSillyEffects(false);
+      
+      // Immediate music
       onActivate();
-    }, 150);
 
-    // Reset animation state
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, 300);
+      // Button animation
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 300);
+
+      // Enable silly effects after 2 seconds
+      setTimeout(() => {
+        setShowSillyEffects(true);
+      }, 2000);
+    } else {
+      // Return to normal mode immediately
+      setIsAnimating(true);
+      setShowSillyEffects(false);
+      onActivate();
+      
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 300);
+    }
   };
 
   return (
@@ -50,14 +54,15 @@ export default function SillyButtonB({ onActivate, isActive: externalIsActive = 
           shadow-md shadow-blue-500/30
           button-glow flex items-center justify-center
           ${externalIsActive ? 'bg-red-900/80 text-red-100 border-red-400/50' : ''}
-          disabled:opacity-50 disabled:cursor-not-allowed
+          ${externalIsActive && !showSillyEffects ? 'animate-pulse' : ''}
+          ${externalIsActive && showSillyEffects ? 'chaos-shake-hard' : ''}
           hover:scale-110
         `}
-        disabled={externalIsActive}
       >
         <span className={`
           inline-block transform transition-transform
           ${isAnimating ? 'animate-bounce' : ''}
+          ${externalIsActive && showSillyEffects ? 'chaos-colors chaos-text-wave' : ''}
         `}>
           {externalIsActive ? 'NORMAL MODE' : 'FINANCE MODE'}
         </span>
