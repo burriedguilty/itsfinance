@@ -12,8 +12,8 @@ interface FinanceEntryTextProps {
 }
 
 export default function FinanceEntryText({
-  delay = 2000, // Default 2 seconds delay
-  typingSpeed = 100, // Default 100ms per character
+  delay = 0, // Default 0 seconds delay
+  typingSpeed = 50, // Default 50ms per character
   toastDuration = 2000, // Default 2 seconds toast duration
 
 }: FinanceEntryTextProps) {
@@ -23,9 +23,10 @@ export default function FinanceEntryText({
   const [isTypingComplete, setIsTypingComplete] = useState(false); // Typing starts incomplete
   const [showToast, setShowToast] = useState(false);
   const [showClick, setShowClick] = useState(false); // Control [CLICK] visibility
-  const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 }); // Control [CLICK] position
+  const [clickPositions, setClickPositions] = useState<Array<{x: number, y: number}>>([]);
   const [countdown, setCountdown] = useState<number | null>(null); // Countdown timer
   const [showLoadingTerminal, setShowLoadingTerminal] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   
   const mainText = 'THEY DIDN\'T WANT YOU TO FIND THIS';
   const contractAddress = 'FSQ4CBemMh7SBAC6odzCaRCvQZPc5i4QTLTFTSAdpump';
@@ -52,16 +53,16 @@ export default function FinanceEntryText({
         clearInterval(typingInterval);
         setIsTypingComplete(true);
         
-        // Start random [CLICK] effect after typing is complete
+        // Start random [CLICK] effects after typing is complete
         const clickInterval = setInterval(() => {
-          // Generate random position within -100px to 100px range
-          const newPosition = {
-            x: Math.random() * 200 - 100,
-            y: Math.random() * 200 - 100
-          };
-          setClickPosition(newPosition);
-          setShowClick(prev => !prev);
-        }, Math.random() * 1000 + 500); // Random interval between 500ms and 1500ms
+          // Generate 3 random positions
+          const newPositions = Array.from({length: 3}, () => ({
+            x: Math.random() * 300 - 150,
+            y: Math.random() * 300 - 150
+          }));
+          setClickPositions(newPositions);
+          setShowClick(true);
+        }, 150); // Fast interval for spammy effect
         
         return () => clearInterval(clickInterval);
       }
@@ -88,6 +89,7 @@ export default function FinanceEntryText({
   }, [toastDuration]);
   
   const handleClick = () => {
+    setIsClicked(true);
     if (isTypingComplete) {
       setShowContractAddress(true);
       setCountdown(3);
@@ -125,7 +127,10 @@ export default function FinanceEntryText({
 
   return (
     <div className={styles.container}>
-      <div className={styles.textContainer}>
+      <div 
+        className={`${styles.textContainer} ${isClicked ? styles.clicked : ''}`}
+        onClick={() => setIsClicked(true)}
+      >
         <div
           className={`${styles.mainText} ${isTypingComplete ? styles.clickable : ''}`}
           onClick={handleClick}
@@ -134,14 +139,19 @@ export default function FinanceEntryText({
           {!isTypingComplete && <span className={styles.cursor}>|</span>}
         </div>
         {isTypingComplete && showClick && (
-          <span 
-            className={styles.clickEffect}
-            style={{
-              transform: `translate(${clickPosition.x}px, ${clickPosition.y}px)`
-            }}
-          >
-            [CLICK]
-          </span>
+          <>
+            {clickPositions.map((pos, index) => (
+              <span 
+                key={index}
+                className={styles.clickEffect}
+                style={{
+                  transform: `translate(${pos.x}px, ${pos.y}px)`
+                }}
+              >
+                [CLICK]
+              </span>
+            ))}
+          </>
         )}
       </div>
       

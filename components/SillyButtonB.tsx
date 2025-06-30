@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SillyButtonBProps {
   onActivate: () => void;
@@ -9,6 +9,18 @@ interface SillyButtonBProps {
 
 export default function SillyButtonB({ onActivate, isActive: externalIsActive = false }: SillyButtonBProps) {
   const [isAnimating, setIsAnimating] = useState(false);
+  const [showChaos, setShowChaos] = useState(false);
+
+  useEffect(() => {
+    if (externalIsActive) {
+      const timer = setTimeout(() => {
+        setShowChaos(true);
+      }, 2500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowChaos(false);
+    }
+  }, [externalIsActive]);
 
   const handleClick = () => {
     if (isAnimating) return;
@@ -39,6 +51,7 @@ export default function SillyButtonB({ onActivate, isActive: externalIsActive = 
           button-glow
           ${isAnimating ? 'animate-pulse' : ''}
           ${externalIsActive ? 'bg-opacity-75 border-red-400/50 text-red-300 hover:border-red-300 hover:text-red-100' : ''}
+          ${showChaos ? 'animate-[button-chaos_0.3s_infinite]' : ''}
           disabled:opacity-50 disabled:cursor-not-allowed
         `}
         disabled={isAnimating}

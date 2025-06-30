@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SillyButtonAProps {
   onActivate: () => void;
@@ -10,6 +10,18 @@ interface SillyButtonAProps {
 
 export default function SillyButtonA({ onActivate, isActive: externalIsActive = false, className = '' }: SillyButtonAProps) {
   const [isAnimating, setIsAnimating] = useState(false);
+  const [showChaos, setShowChaos] = useState(false);
+
+  useEffect(() => {
+    if (externalIsActive) {
+      const timer = setTimeout(() => {
+        setShowChaos(true);
+      }, 2500);
+      return () => clearTimeout(timer);
+    } else {
+      setShowChaos(false);
+    }
+  }, [externalIsActive]);
 
   const handleClick = () => {
     setIsAnimating(true);
@@ -35,6 +47,7 @@ export default function SillyButtonA({ onActivate, isActive: externalIsActive = 
           button-glow
           ${isAnimating ? 'animate-pulse' : ''}
           ${externalIsActive ? 'bg-opacity-75 border-red-400/50 text-red-300 hover:border-red-300 hover:text-red-100' : ''}
+          ${showChaos ? 'animate-[button-chaos_0.3s_infinite]' : ''}
           ${className}
         `}
       >
