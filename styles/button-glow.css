@@ -1,14 +1,23 @@
 @keyframes button-glow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(96, 165, 250, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
-  }
+  0% { background-position: 0% 50%; transform: rotate(0deg); }
+  50% { background-position: 100% 50%; transform: rotate(180deg); }
+  100% { background-position: 0% 50%; transform: rotate(360deg); }
 }
 
 .button-glow {
-  animation: button-glow 3s ease-in-out infinite;
+  position: relative;
+}
+
+.button-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #0066ff, #00ffff, #0066ff);
+  background-size: 200%;
+  animation: button-glow 2s linear infinite;
+  z-index: -1;
+  filter: blur(4px);
+  border-radius: 50%;
 }
 
 .button-glow:hover {

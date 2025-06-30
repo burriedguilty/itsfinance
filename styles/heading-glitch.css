@@ -2,6 +2,7 @@
   position: relative;
   display: inline-block;
   animation: char-glitch 0.2s ease;
+  font-family: Georgia, serif;
 }
 
 .char-glitch::before,

@@ -1,34 +1,30 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import './globals.css'
+import '@/styles/global.css';
 import "./chaos.css";
+import { Inter } from "next/font/google";
+import { AppProvider } from '@/context/AppContext';
+import ClientButtons from '../components/ClientButtons';
 
-import MetaHead from '@/components/MetaHead';
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "FINANCE",
+  title: "IT'S FINANCE",
   description: "TO THE FINANCIAL FREEDOM",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <MetaHead />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
-      <body
-        className="font-mono min-h-screen perspective-1000 bg-background text-softWhite"
-        style={{
-          transformStyle: 'preserve-3d',
-          perspective: '1000px',
-          transformOrigin: 'center center'
-        }}
-      >
-        {children}
+      <body className={inter.className}>
+        <AppProvider>
+          {children}
+          <ClientButtons />
+        </AppProvider>
       </body>
     </html>
   );

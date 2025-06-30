@@ -156,7 +156,7 @@ const AIImagery = () => {
             <div className="space-y-6">
               {/* Image Upload */}
               <div className="bg-[#001020] rounded-lg p-6 border border-blue-400/20 shadow-inner shadow-blue-500/10">
-                <h2 className="text-blue-100 font-mono text-lg mb-4">1. Upload Source Image</h2>
+                <h2 className="text-blue-100 font-georgia text-lg mb-4">1. Upload Source Image</h2>
                 <div className="flex flex-col items-center space-y-4">
                   <button
                     onClick={() => fileInputRef.current?.click()}
@@ -186,7 +186,7 @@ const AIImagery = () => {
 
               {/* Prompt Input */}
               <div className="bg-[#001020] rounded-lg p-6 border border-blue-400/20 shadow-inner shadow-blue-500/10">
-                <h2 className="text-blue-100 font-mono text-lg mb-4">2. Enter Prompt</h2>
+                <h2 className="text-blue-100 font-georgia text-lg mb-4">2. Enter Prompt</h2>
                 <textarea
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
@@ -217,7 +217,7 @@ const AIImagery = () => {
             <div className="bg-[#001020] rounded-lg p-6 border border-blue-400/20 shadow-inner shadow-blue-500/10 flex flex-col items-center justify-center min-h-[400px]">
               {generatedImage ? (
                 <div className="space-y-4 w-full">
-                  <h2 className="text-blue-100 font-mono text-lg">Generated Result</h2>
+                  <h2 className="text-blue-100 font-georgia text-lg">Generated Result</h2>
                   <div className="relative w-full h-[400px] border border-blue-400/30 rounded-lg overflow-hidden">
                     <Image
                       src={generatedImage}

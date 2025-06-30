@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import dynamic from 'next/dynamic';
-import SillyButtonA from '@/components/SillyButtonA';
 import SillyBackground from '@/components/SillyBackground';
 import ChaosRain from '@/components/ChaosRain';
 import { mainBackground } from '@/config/sillyVideos';
+import { useApp } from '@/context/AppContext';
 
 // Import components with dynamic loading for client components
 const LogoCenter = dynamic(() => import('@/components/LogoCenter'), { ssr: false });
@@ -15,7 +15,7 @@ const VerticalRandomText = dynamic(() => import('@/components/VerticalRandomText
 const FinanceEntryText = dynamic(() => import('@/components/FinanceEntryText'), { ssr: false });
 
 export default function FinanceClient() {
-  const [isSillyMode, setIsSillyMode] = useState(false);
+  const { isSillyMode } = useApp();
   const [logoVariant, setLogoVariant] = useState(1);
   const [screenShakeVariant, setScreenShakeVariant] = useState(1);
 
@@ -56,24 +56,10 @@ export default function FinanceClient() {
       
       <SillyBackground 
         isActive={isSillyMode} 
-        onVideoEnd={() => {
-          setIsSillyMode(false);
-        }} 
       />
       <ChaosRain isActive={isSillyMode} />
       
-      {/* Silly Button at the top */}
-      <div className="absolute top-8 right-8 z-20">
-        <div className={isSillyMode ? 'button-shake' : ''}>
-          <SillyButtonA 
-            isActive={isSillyMode}
-            onActivate={() => {
-              setIsSillyMode(!isSillyMode);
-              changeAnimationVariants();
-            }} 
-          />
-        </div>
-      </div>
+
       
       {/* Section for vertical text - separate from main content */}
       <section className={`absolute top-0 left-0 w-full h-full pointer-events-none ${isSillyMode ? 'chaos-colors' : ''}`}>

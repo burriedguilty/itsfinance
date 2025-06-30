@@ -74,7 +74,7 @@ const GlitchChar = memo(({ char }: { char: string }) => {
   }, [char, isGlitching]);
 
   return (
-    <span className={isGlitching ? 'char-glitch' : ''}>
+    <span className={`${isGlitching ? 'char-glitch' : ''} font-georgia`}>
       {displayChar}
     </span>
   );
@@ -91,8 +91,9 @@ const GlitchHeading = memo(({
   as?: 'h2' | 'h3';
   className?: string;
 }) => {
+  const combinedClassName = `font-georgia ${className}`.trim();
   return (
-    <Component className={className}>
+    <Component className={combinedClassName}>
       {text.split('').map((char, index) => (
         <GlitchChar key={`${index}-${char}`} char={char} />
       ))}

@@ -110,13 +110,13 @@ export default function PFPMakerContent({ onDownloadComplete }: PFPMakerContentP
   return (
     <div className="text-white">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl text-blue-100 font-mono tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] mb-6 font-bold uppercase">FIX MY FINANCE</h1>
+        <h1 className="text-3xl text-blue-100 font-georgia tracking-widest drop-shadow-[0_0_3px_rgba(147,197,253,0.5)] mb-6 font-bold uppercase">FIX MY FINANCE</h1>
         <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] border border-blue-400/30 rounded-lg p-6 hover:border-blue-300/50 transition-all duration-500 shadow-lg shadow-blue-500/20 ${isGenerating ? 'glitch-container' : ''}`}>
           <div className="max-w-sm mx-auto">
             <div className="bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 p-3 shadow-inner shadow-blue-500/10">
               {isPhase2 ? (
                 <div className="text-center">
-                  <h2 className="text-lg text-blue-100 font-mono tracking-wider mb-4">Generate AI Image</h2>
+                  <h2 className="text-lg text-blue-100 font-georgia tracking-wider mb-4">Generate AI Image</h2>
                   <p className="text-blue-300/80 text-sm mb-6">
                     Now that you have your PFP, let&apos;s create some AI-generated art to match your style!
                   </p>

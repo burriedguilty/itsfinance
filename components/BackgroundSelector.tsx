@@ -12,7 +12,7 @@ interface Props {
 export default function BackgroundSelector({ onSelect, selectedId }: Props) {
   return (
     <div className="space-y-4">
-      <h3 className="text-lg text-blue-100 font-mono tracking-wider drop-shadow-[0_0_3px_rgba(147,197,253,0.5)]">Select Background</h3>
+      <h3 className="text-lg text-blue-100 font-georgia tracking-wider drop-shadow-[0_0_3px_rgba(147,197,253,0.5)]">Select Background</h3>
       <div className="grid grid-cols-2 gap-4">
         {backgrounds.map((bg) => (
           <button

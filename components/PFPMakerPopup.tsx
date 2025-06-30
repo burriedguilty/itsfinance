@@ -51,7 +51,7 @@ export default function PFPMakerPopup({ isOpen, onClose }: PFPMakerPopupProps) {
             {showAIImagery && (
               <div className="mt-8 border-t border-blue-400/30 pt-6 animate-fadeIn">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-blue-100 font-mono text-lg">Want to enhance your PFP?</h2>
+                  <h2 className="text-blue-100 font-georgia text-lg">Want to enhance your PFP?</h2>
                   <button
                     onClick={() => setShowAIImagery(false)}
                     className="text-blue-300 hover:text-blue-100 transition-colors"

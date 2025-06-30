@@ -71,7 +71,7 @@ export default function LoadingTerminal() {
           />
         </div>
         
-        <p className="text-white font-mono text-xl tracking-wider drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] text-shadow">
+        <p className="text-white font-georgia text-xl tracking-wider drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] text-shadow">
           {text}
           <span className="animate-blink text-[#00f0ff] drop-shadow-[0_0_12px_rgba(0,240,255,0.8)]">|</span>
         </p>

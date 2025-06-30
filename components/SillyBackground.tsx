@@ -103,7 +103,7 @@ export default function SillyBackground({ isActive = false, background: initialB
       <audio ref={audioRef2} className="hidden" />
       
       {/* Current Background */}
-      <div className="fixed inset-0 z-10">
+      <div className="fixed inset-0 z-10 pointer-events-none">
         <div className={`absolute inset-0 transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
           {currentBackground.type === 'video' ? (
             <video

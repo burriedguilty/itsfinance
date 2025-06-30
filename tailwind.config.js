@@ -21,6 +21,7 @@ module.exports = {
         sans: ['Arial', 'sans-serif'],
         mono: ['Arial', 'monospace'],
         arial: ['Arial', 'sans-serif'],
+        georgia: ['Georgia', 'serif'],
       },
       animation: {
         'glow-pulse': 'glow-pulse 3s ease-in-out infinite',

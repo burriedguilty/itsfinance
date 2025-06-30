@@ -9,7 +9,7 @@ interface SillyButtonBProps {
 
 export default function SillyButtonB({ onActivate, isActive: externalIsActive = false }: SillyButtonBProps) {
   const [isAnimating, setIsAnimating] = useState(false);
-  const [showChaos, setShowChaos] = useState(false);
+  const [, setShowChaos] = useState(false);
 
   useEffect(() => {
     if (externalIsActive) {
@@ -38,23 +38,22 @@ export default function SillyButtonB({ onActivate, isActive: externalIsActive = 
   };
 
   return (
-    <div className="group relative">
+    <div className="fixed bottom-8 left-8 z-[999] group">
       <button
         onClick={handleClick}
         className={`
-          px-4 py-2 rounded
-          bg-[#001428] border border-blue-400/50
+          w-16 h-16 rounded-full
+          bg-[#001428] border-2 border-blue-400/50
           text-blue-300 hover:border-blue-300 hover:text-blue-100
           transition-all duration-300
-          font-mono tracking-wider text-sm
-          shadow-sm shadow-blue-500/20
-          button-glow
-          ${isAnimating ? 'animate-pulse' : ''}
-          ${externalIsActive ? 'bg-opacity-75 border-red-400/50 text-red-300 hover:border-red-300 hover:text-red-100' : ''}
-          ${showChaos ? 'animate-[button-chaos_0.3s_infinite]' : ''}
+          font-arial tracking-wider text-sm
+          shadow-md shadow-blue-500/30
+          button-glow flex items-center justify-center
+          ${externalIsActive ? 'bg-red-900/80 text-red-100 border-red-400/50' : ''}
           disabled:opacity-50 disabled:cursor-not-allowed
+          hover:scale-110
         `}
-        disabled={isAnimating}
+        disabled={externalIsActive}
       >
         <span className={`
           inline-block transform transition-transform

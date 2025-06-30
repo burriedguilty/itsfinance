@@ -20,13 +20,16 @@
 }
 
 .mainText {
-  font-family: Arial, monospace;
-  font-size: 1.25rem;
-  letter-spacing: 2px;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.5rem;
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  color: #93c5fd;
+  text-shadow: 0 0 10px rgba(147, 197, 253, 0.5);
+  cursor: default;
+  user-select: none;
+  transition: all 0.3s ease;
   position: relative;
   z-index: 1;
+  font-family: Georgia;
 }
 
 /* Responsive text sizes */
@@ -34,6 +37,7 @@
   .mainText {
     font-size: 1.4rem;
     letter-spacing: 1px;
+    font-family: Georgia;
   }
 }
 
@@ -41,6 +45,7 @@
   .mainText {
     font-size: 1.2rem;
     letter-spacing: 0.5px;
+    font-family: Georgia;
   }
 }
 
@@ -54,10 +59,13 @@
 }
 
 .contractAddress {
-  font-size: 0.9rem;
-  font-family: Arial, monospace;
-  color: #00f0ff;
-  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  color: #60a5fa;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px rgba(96, 165, 250, 0.3);
   cursor: pointer;
   padding: 0.2rem 0.6rem;
   background-color: rgba(0, 0, 0, 0.5);
