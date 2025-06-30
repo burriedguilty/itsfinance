@@ -25,7 +25,7 @@
 .marquee-text {
   display: inline-block;
   white-space: nowrap;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: Arial, sans-serif;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 

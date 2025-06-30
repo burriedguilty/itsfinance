@@ -18,7 +18,9 @@ module.exports = {
         softWhite: '#EAEAEA'
       },
       fontFamily: {
-        mono: ['Space Mono', 'IBM Plex Mono', 'VT323', 'monospace'],
+        sans: ['Arial', 'sans-serif'],
+        mono: ['Arial', 'monospace'],
+        arial: ['Arial', 'sans-serif'],
       },
       animation: {
         'glow-pulse': 'glow-pulse 3s ease-in-out infinite',

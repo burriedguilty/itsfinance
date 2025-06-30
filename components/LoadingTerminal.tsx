@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import { mainBackground } from '@/config/sillyVideos';
 
-const DitheredBg = dynamic(() => import('@/components/DitheredBg'), { ssr: false });
 const VerticalRandomText = dynamic(() => import('@/components/VerticalRandomText'), { ssr: false });
 
 export default function LoadingTerminal() {
@@ -40,9 +40,16 @@ export default function LoadingTerminal() {
   
   return (
     <main className="fixed inset-0 bg-[#000] min-h-screen overflow-hidden">
-      {/* Background layers */}
+      {/* Video Background */}
       <div className="fixed inset-0 z-0">
-        <DitheredBg primaryColor="#001122" secondaryColor="#000814" patternSize={4} />
+        <video
+          src={mainBackground.url}
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
       </div>
       
       <div className="fixed inset-0 z-10">

@@ -96,7 +96,7 @@
 
 .text {
   color: #00f0ff;
-  font-family: 'Source Code Pro', monospace;
+  font-family: Arial, monospace;
   font-size: 1.2rem;
   text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
   white-space: nowrap;

@@ -20,7 +20,7 @@
 }
 
 .mainText {
-  font-family: var(--font-vt323);
+  font-family: Arial, monospace;
   font-size: 1.25rem;
   letter-spacing: 2px;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
@@ -55,7 +55,7 @@
 
 .contractAddress {
   font-size: 0.9rem;
-  font-family: 'Source Code Pro', monospace;
+  font-family: Arial, monospace;
   color: #00f0ff;
   text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
   cursor: pointer;

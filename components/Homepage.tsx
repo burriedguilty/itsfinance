@@ -14,12 +14,12 @@ import '@/styles/heading-glitch.css';
 import SillyButtonB from '@/components/SillyButtonB';
 import ChaosRain from '@/components/ChaosRain';
 import SillyBackground from '@/components/SillyBackground';
+import { mainBackground } from '@/config/sillyVideos';
 const VerticalRandomText = dynamic(() => import('@/components/VerticalRandomText'), { ssr: false });
 const GlitchMarquee = dynamic(() => import('@/components/GlitchMarquee'), { ssr: false });
 
 // Import components with dynamic loading
 const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
-const DitheredBg = dynamic(() => import('@/components/DitheredBg'), { ssr: false });
 const PFPMakerPopup = dynamic(() => import('@/components/PFPMakerPopup'), { ssr: false });
 
 
@@ -31,11 +31,13 @@ export default function Homepage() {
     <div className={`bg-background min-h-screen overflow-x-hidden relative ${isSillyMode ? 'chaos-mode' : ''}`}>
       {/* Background layers */}
       <div className="fixed inset-0 z-0">
-        <DitheredBg 
-          primaryColor="#001122" 
-          secondaryColor="#000814" 
-          patternSize={4} 
-          className={`transition-opacity duration-500 ${isSillyMode ? 'opacity-0' : 'opacity-100'}`}
+        <video
+          src={mainBackground.url}
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
         />
       </div>
 
@@ -70,7 +72,7 @@ export default function Homepage() {
             />
             <button
               onClick={() => setIsPFPMakerOpen(true)}
-              className={`px-4 py-2 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 rounded font-mono tracking-wider transition-all text-sm shadow-sm shadow-blue-500/20 button-glow ${isSillyMode ? 'chaos-scale chaos-colors bg-opacity-30 backdrop-blur-sm' : ''}`}
+              className={`px-4 py-2 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 rounded font-arial tracking-wider transition-all text-sm shadow-sm shadow-blue-500/20 button-glow ${isSillyMode ? 'chaos-scale chaos-colors bg-opacity-30 backdrop-blur-sm' : ''}`}
             >
               Create PFP
             </button>
@@ -258,7 +260,7 @@ export default function Homepage() {
                   className={isSillyMode ? 'chaos-colors' : ''}
                 />
               </div>
-              <p className={`text-blue-100 font-mono leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-center mt-6 text-lg max-w-2xl mx-auto ${isSillyMode ? 'chaos-colors chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 3 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+              <p className={`text-blue-100 font-arial leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-center mt-6 text-lg max-w-2xl mx-auto ${isSillyMode ? 'chaos-colors chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 3 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                 In this world, Finance is no longer a tool &mdash; it is the source, the truth, the deity. When the blockchain shattered the veil of FINANCE, old paradigms fell. Economies once bound by productivity and policy were reborn through liquidity and leverage. Traditional systems crumbled under the weight of exponential growth, and in their place rose a faith-based economy, where numbers ascend as doctrine and price becomes prophecy.
               </p>
               <div className={`mt-auto pt-8 flex flex-wrap gap-3 justify-center ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
@@ -266,7 +268,7 @@ export default function Homepage() {
                   href="https://x.com/FinanceCoinSOL" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className={`px-5 py-2 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 transition-all duration-300 rounded-md font-mono tracking-wider shadow-sm shadow-blue-500/20 button-glow ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
+                  className={`px-5 py-2 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 transition-all duration-300 rounded-md font-arial tracking-wider shadow-sm shadow-blue-500/20 button-glow ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
                 >
                   X
                 </a>
@@ -274,7 +276,7 @@ export default function Homepage() {
                   href="https://x.com/i/communities/1936427386675089602" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className={`px-5 py-2 bg-[#001428] border border-blue-400/30 text-blue-400 hover:border-blue-300 hover:text-blue-100 transition-all duration-300 rounded-md font-mono tracking-wider shadow-sm shadow-blue-500/20 ${isSillyMode ? 'chaos-bounce chaos-colors chaos-pulse-grow bg-opacity-30 backdrop-blur-sm' : ''}`}
+                  className={`px-5 py-2 bg-[#001428] border border-blue-400/30 text-blue-400 hover:border-blue-300 hover:text-blue-100 transition-all duration-300 rounded-md font-arial tracking-wider shadow-sm shadow-blue-500/20 ${isSillyMode ? 'chaos-bounce chaos-colors chaos-pulse-grow bg-opacity-30 backdrop-blur-sm' : ''}`}
                 >
                   X COMMUNITY
                 </a>
@@ -282,7 +284,7 @@ export default function Homepage() {
                   href="https://dexscreener.com/solana/9axdtk6m17kqnxemavqyocjmu57rsf6w9wgzbsdssg3u" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className={`px-5 py-2 bg-[#001428] border border-blue-400/30 text-blue-400 hover:border-blue-300 hover:text-blue-100 transition-all duration-300 rounded-md font-mono tracking-wider shadow-sm shadow-blue-500/20 ${isSillyMode ? 'chaos-bounce chaos-colors chaos-pulse-grow bg-opacity-30 backdrop-blur-sm' : ''}`}
+                  className={`px-5 py-2 bg-[#001428] border border-blue-400/30 text-blue-400 hover:border-blue-300 hover:text-blue-100 transition-all duration-300 rounded-md font-arial tracking-wider shadow-sm shadow-blue-500/20 ${isSillyMode ? 'chaos-bounce chaos-colors chaos-pulse-grow bg-opacity-30 backdrop-blur-sm' : ''}`}
                 >
                   CHART
                 </a>

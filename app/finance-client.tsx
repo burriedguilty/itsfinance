@@ -5,11 +5,12 @@ import dynamic from 'next/dynamic';
 import SillyButtonA from '@/components/SillyButtonA';
 import SillyBackground from '@/components/SillyBackground';
 import ChaosRain from '@/components/ChaosRain';
+import { mainBackground } from '@/config/sillyVideos';
 
 // Import components with dynamic loading for client components
 const LogoCenter = dynamic(() => import('@/components/LogoCenter'), { ssr: false });
 const Footer = dynamic(() => import('@/components/Footer'), { ssr: false });
-const DitheredBg = dynamic(() => import('@/components/DitheredBg'), { ssr: false });
+
 const VerticalRandomText = dynamic(() => import('@/components/VerticalRandomText'), { ssr: false });
 const FinanceEntryText = dynamic(() => import('@/components/FinanceEntryText'), { ssr: false });
 
@@ -41,9 +42,17 @@ export default function FinanceClient() {
       data-variant={screenShakeVariant}
     >
       {/* Background layers */}
-      <div className={`transition-opacity duration-300 ${isSillyMode ? 'opacity-0 invisible' : 'opacity-100 visible'}`}>
-        <DitheredBg primaryColor="#001122" secondaryColor="#000814" patternSize={4} />
+      <div className="fixed inset-0 z-0">
+        <video
+          src={mainBackground.url}
+          className="w-full h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
       </div>
+
       
       <SillyBackground 
         isActive={isSillyMode} 

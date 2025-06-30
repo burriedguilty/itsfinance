@@ -7,6 +7,13 @@ export interface SillyVideo {
   duration?: number;      // Duration in ms, untuk GIF auto-switch
 }
 
+export const mainBackground: SillyVideo = {
+  id: 0,
+  type: 'video',
+  url: '/videos/sillymain.webm',
+  audioUrl: '/audio/silly1.mp3'
+};
+
 export const sillyVideos: SillyVideo[] = [
   {
     id: 1,

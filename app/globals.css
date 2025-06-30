@@ -15,13 +15,13 @@
   --color-accent: var(--accent);
   --color-secondary: var(--secondary);
   --color-glow: var(--glow);
-  --font-mono: var(--font-space-mono), var(--font-ibm-plex-mono), var(--font-vt323), monospace;
+  --font-mono: Arial, monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-mono);
+  font-family: Arial, monospace;
   cursor: default;
 }
 
