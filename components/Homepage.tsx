@@ -52,15 +52,15 @@ export default function Homepage() {
       <header className={`sticky top-0 z-30 w-full border-b border-secondary/30 transition-all duration-500 ${isSillyMode ? 'bg-black/30 backdrop-blur-sm chaos-shake-hard' : 'bg-black/70 backdrop-blur-sm'}`}>
         <div className={`container mx-auto px-4 py-2 flex items-center justify-between ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
           <div className={`flex items-center gap-2 ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-            <div className={isSillyMode ? 'chaos-zoom' : ''}>
+            <a href="https://itsjust.finance" className={isSillyMode ? 'chaos-zoom' : ''}>
               <Image
-                src="/finance1.svg"
+                src="/finance.png"
                 alt="Finance Logo"
                 width={48}
                 height={48}
                 className={isSillyMode ? 'chaos-colors' : ''}
               />
-            </div>
+            </a>
           </div>
 
         </div>
@@ -219,7 +219,7 @@ export default function Homepage() {
             <div className={`w-full md:w-1/2 bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 flex items-center justify-center p-4 shadow-inner shadow-blue-500/10 transition-all duration-500 ${isSillyMode ? 'bg-opacity-30 backdrop-blur-sm' : ''} ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
               <video 
                 src="/vid2.mp4" 
-                className={`w-auto h-auto ${isSillyMode ? 'chaos-zoom' : ''}`}
+                className={`w-full h-full object-cover ${isSillyMode ? 'chaos-zoom' : ''}`}
                 autoPlay 
                 loop 
                 muted 
@@ -227,15 +227,15 @@ export default function Homepage() {
               />
             </div>
             <div className="w-full md:w-1/2 flex flex-col items-center">
-              <div className={isSillyMode ? 'chaos-zoom' : ''}>
+              <a href="https://itsjust.finance" className={isSillyMode ? 'chaos-zoom' : ''}>
                 <Image
-                  src="/finance1.svg"
+                  src="/finance.png"
                   alt="Finance Logo"
                   width={384}
                   height={384}
                   className={isSillyMode ? 'chaos-colors' : ''}
                 />
-              </div>
+              </a>
               <p className={`text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-center mt-6 text-lg max-w-2xl mx-auto ${isSillyMode ? 'chaos-colors chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 3 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                 In this world, Finance is no longer a tool &mdash; it is the source, the truth, the deity. When the blockchain shattered the veil of FINANCE, old paradigms fell. Economies once bound by productivity and policy were reborn through liquidity and leverage. Traditional systems crumbled under the weight of exponential growth, and in their place rose a faith-based economy, where numbers ascend as doctrine and price becomes prophecy.
               </p>
