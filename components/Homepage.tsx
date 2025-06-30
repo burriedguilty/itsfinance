@@ -65,7 +65,8 @@ export default function Homepage() {
           </div>
           <div className="flex items-center space-x-6">
             <SillyButtonB 
-              onActivate={() => setIsSillyMode(true)} 
+              isActive={isSillyMode}
+              onActivate={() => setIsSillyMode(!isSillyMode)} 
             />
             <button
               onClick={() => setIsPFPMakerOpen(true)}

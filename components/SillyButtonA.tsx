@@ -4,19 +4,20 @@ import { useState } from 'react';
 
 interface SillyButtonAProps {
   onActivate: () => void;
+  isActive?: boolean;
   className?: string;
 }
 
-export default function SillyButtonA({ onActivate, className = '' }: SillyButtonAProps) {
-  const [isActive, setIsActive] = useState(false);
+export default function SillyButtonA({ onActivate, isActive: externalIsActive = false, className = '' }: SillyButtonAProps) {
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleClick = () => {
-    setIsActive(true);
+    setIsAnimating(true);
     onActivate();
     
-    // Reset after animation
+    // Reset animation
     setTimeout(() => {
-      setIsActive(false);
+      setIsAnimating(false);
     }, 300);
   };
 
@@ -32,11 +33,12 @@ export default function SillyButtonA({ onActivate, className = '' }: SillyButton
           font-mono tracking-wider text-sm
           shadow-lg shadow-blue-500/20
           button-glow
-          ${isActive ? 'animate-pulse' : ''}
+          ${isAnimating ? 'animate-pulse' : ''}
+          ${externalIsActive ? 'bg-opacity-75 border-red-400/50 text-red-300 hover:border-red-300 hover:text-red-100' : ''}
           ${className}
         `}
       >
-        FINANCE MODE
+        {externalIsActive ? 'NORMAL MODE' : 'FINANCE MODE'}
       </button>
       
       {/* Warning tooltip */}

@@ -57,8 +57,9 @@ export default function FinanceClient() {
       <div className="absolute top-8 right-8 z-20">
         <div className={isSillyMode ? 'button-shake' : ''}>
           <SillyButtonA 
+            isActive={isSillyMode}
             onActivate={() => {
-              setIsSillyMode(true);
+              setIsSillyMode(!isSillyMode);
               changeAnimationVariants();
             }} 
           />

@@ -4,23 +4,24 @@ import { useState } from 'react';
 
 interface SillyButtonBProps {
   onActivate: () => void;
+  isActive?: boolean;
 }
 
-export default function SillyButtonB({ onActivate }: SillyButtonBProps) {
-  const [isActive, setIsActive] = useState(false);
+export default function SillyButtonB({ onActivate, isActive: externalIsActive = false }: SillyButtonBProps) {
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleClick = () => {
-    if (isActive) return;
-    setIsActive(true);
+    if (isAnimating) return;
+    setIsAnimating(true);
     
     // Trigger activation after a short delay
     setTimeout(() => {
       onActivate();
     }, 150);
 
-    // Reset active state
+    // Reset animation state
     setTimeout(() => {
-      setIsActive(false);
+      setIsAnimating(false);
     }, 300);
   };
 
@@ -36,16 +37,17 @@ export default function SillyButtonB({ onActivate }: SillyButtonBProps) {
           font-mono tracking-wider text-sm
           shadow-sm shadow-blue-500/20
           button-glow
-          ${isActive ? 'animate-pulse' : ''}
+          ${isAnimating ? 'animate-pulse' : ''}
+          ${externalIsActive ? 'bg-opacity-75 border-red-400/50 text-red-300 hover:border-red-300 hover:text-red-100' : ''}
           disabled:opacity-50 disabled:cursor-not-allowed
         `}
-        disabled={isActive}
+        disabled={isAnimating}
       >
         <span className={`
           inline-block transform transition-transform
-          ${isActive ? 'animate-bounce' : ''}
+          ${isAnimating ? 'animate-bounce' : ''}
         `}>
-          FINANCE MODE
+          {externalIsActive ? 'NORMAL MODE' : 'FINANCE MODE'}
         </span>
       </button>
 
