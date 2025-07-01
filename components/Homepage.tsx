@@ -3,11 +3,13 @@
 import { useApp } from '@/context/AppContext';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MediaGallery from '@/components/MediaGallery';
+import ComingSoonPopup from '@/components/ComingSoonPopup';
 
 import '@/styles/metallic.css';
 import '@/styles/video-container.css';
+import '@/styles/text-glow.css';
 import '@/styles/button-glow.css';
 import '@/styles/marquee.css';
 import '@/styles/glitch.css';
@@ -26,7 +28,11 @@ const GlitchMarquee = dynamic(() => import('@/components/GlitchMarquee'), { ssr:
 function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSillyMode: boolean }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-
+  
+  // Use refs instead of state for animation values to avoid re-renders
+  const glowRef = useRef<HTMLDivElement>(null);
+  
+  // Text cycling effect
   useEffect(() => {
     const interval = setInterval(() => {
       setIsAnimating(true);
@@ -39,6 +45,20 @@ function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSill
     return () => clearInterval(interval);
   }, [phrases.length]);
 
+  // Rapid blinking glow effect using CSS animation instead of state updates
+  useEffect(() => {
+    if (!glowRef.current) return;
+    
+    // Add a CSS class for animation instead of constantly updating state
+    glowRef.current.classList.add('text-glow-animation');
+    
+    return () => {
+      if (glowRef.current) {
+        glowRef.current.classList.remove('text-glow-animation');
+      }
+    };
+  }, []);
+
   const chaosEffect = isSillyMode ? [
     'chaos-text-jump',
     'chaos-text-wave',
@@ -50,18 +70,24 @@ function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSill
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div 
-        className={`text-3xl font-bold transition-opacity duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'} ${chaosEffect}`}
-        style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}
+        ref={glowRef}
+        className={`text-3xl transition-opacity duration-500 text-glow-animation ${isAnimating ? 'opacity-0' : 'opacity-100'} ${chaosEffect}`}
+        style={{ 
+          '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, 
+          '--chaos-delay': `${Math.random()}s`
+        } as React.CSSProperties}
       >
         · {phrases[currentIndex]}
       </div>
     </div>
   );
+
 }
 
 export default function Homepage() {
   const { isSillyMode } = useApp();
   const [showMemeSection, setShowMemeSection] = useState(false);
+  const [showPfpPopup, setShowPfpPopup] = useState(false);
 
   return (
     <div className={`bg-background min-h-screen overflow-x-hidden relative ${isSillyMode ? 'chaos-mode' : ''}`}>
@@ -101,12 +127,18 @@ export default function Homepage() {
             </a>
           </div>
           
-          <div className="flex items-center">
+          <div className="flex items-center space-x-3">
             <button 
               onClick={() => setShowMemeSection(!showMemeSection)}
               className={`px-4 py-1 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 hover:shadow-[0_0_15px_rgba(96,165,250,0.6)] transition-all duration-300 rounded-md font-georgia tracking-wider shadow-sm shadow-blue-500/20 relative ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
             >
-              MEME
+              MEMES
+            </button>
+            <button 
+              onClick={() => setShowPfpPopup(true)}
+              className={`px-4 py-1 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 hover:shadow-[0_0_15px_rgba(96,165,250,0.6)] transition-all duration-300 rounded-md font-georgia tracking-wider shadow-sm shadow-blue-500/20 relative ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
+            >
+              PFP MAKER
             </button>
           </div>
 
@@ -343,9 +375,17 @@ export default function Homepage() {
         </div>
       </main>
 
-      {/* MEME Gallery Popup */}
-      {showMemeSection && <MediaGallery onClose={() => setShowMemeSection(false)} />}
+      {/* Meme gallery popup */}
+      {showMemeSection && (
+        <MediaGallery onClose={() => setShowMemeSection(false)} />
+      )}
       
+      {/* PFP Maker coming soon popup */}
+      <ComingSoonPopup 
+        isOpen={showPfpPopup}
+        onClose={() => setShowPfpPopup(false)}
+        feature="PFP MAKER"
+      />
 
       
       {/* Footer */}

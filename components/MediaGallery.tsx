@@ -52,29 +52,31 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
   const minSwipeDistance = 50; // Minimum distance in pixels to trigger a swipe
   const [isDownloading, setIsDownloading] = useState(false);
   
-  // Original Cloudinary media URLs
+  // Original Cloudinary media URLs - using public URLs with proper formats
   const originalMediaItems: MediaItem[] = [
-    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/v1751374268/IMG_6515-moshed-06-30-17-22-32-990.mp4' },
-    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/v1751374272/FINANCE_SCHIZ-001.mov' },
-    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/v1751374279/FINANCE_SCHIZ-002.mov' },
+    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/f_mp4/v1751374268/IMG_6515-moshed-06-30-17-22-32-990.mp4' },
+    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/f_mp4/v1751374272/FINANCE_SCHIZ-001.mp4' },
+    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/f_mp4/v1751374279/FINANCE_SCHIZ-002.mp4' },
   ];
   
   // State for randomized media items
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
   
-  // Randomize media items on component mount
+  // Shuffle function defined outside useEffect to avoid recreation
+  const shuffleArray = (array: MediaItem[]): MediaItem[] => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
+  
+  // Randomize media items on component mount only
   useEffect(() => {
-    const shuffleArray = (array: MediaItem[]): MediaItem[] => {
-      const newArray = [...array];
-      for (let i = newArray.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-      }
-      return newArray;
-    };
-    
     setMediaItems(shuffleArray(originalMediaItems));
-  }, [originalMediaItems]);
+    // Empty dependency array means this runs once on mount
+  }, []);
   
   const goToNext = () => {
     setCurrentMediaIndex((prev) => (prev + 1) % mediaItems.length);
@@ -124,8 +126,19 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
     try {
       setIsDownloading(true);
       
-      // Fetch the file as a blob
-      const response = await fetch(url);
+      // Fetch the file as a blob with CORS mode
+      const response = await fetch(url, {
+        mode: 'cors',
+        credentials: 'omit',
+        headers: {
+          'Accept': '*/*'
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
+      }
+      
       const blob = await response.blob();
       
       // Create a blob URL and trigger download
@@ -141,6 +154,7 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
       URL.revokeObjectURL(blobUrl);
     } catch (error) {
       console.error('Error downloading file:', error);
+      alert('Failed to download media. Please try again later.');
     } finally {
       setIsDownloading(false);
     }
@@ -182,8 +196,9 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
                     loop
                     muted
                     playsInline
-                    disablePictureInPicture
-                    disableRemotePlayback
+                    controls={false}
+                    preload="auto"
+                    onError={(e) => console.error('Video error:', e)}
                     style={{ objectFit: 'contain' }}
                   />
                 </div>
