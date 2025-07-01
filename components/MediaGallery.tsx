@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, TouchEvent } from 'react';
+import { useState, useRef, TouchEvent, useEffect } from 'react';
 import Image from 'next/image';
 
 type MediaItem = {
@@ -50,13 +50,31 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
   const minSwipeDistance = 50; // Minimum distance in pixels to trigger a swipe
+  const [isDownloading, setIsDownloading] = useState(false);
   
-  // Cloudinary media URLs
-  const mediaItems: MediaItem[] = [
+  // Original Cloudinary media URLs
+  const originalMediaItems: MediaItem[] = [
     { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/v1751374268/IMG_6515-moshed-06-30-17-22-32-990.mp4' },
     { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/v1751374272/FINANCE_SCHIZ-001.mov' },
     { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/v1751374279/FINANCE_SCHIZ-002.mov' },
   ];
+  
+  // State for randomized media items
+  const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
+  
+  // Randomize media items on component mount
+  useEffect(() => {
+    const shuffleArray = (array: MediaItem[]): MediaItem[] => {
+      const newArray = [...array];
+      for (let i = newArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+      }
+      return newArray;
+    };
+    
+    setMediaItems(shuffleArray(originalMediaItems));
+  }, [originalMediaItems]);
   
   const goToNext = () => {
     setCurrentMediaIndex((prev) => (prev + 1) % mediaItems.length);
@@ -95,10 +113,42 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
     touchStartX.current = null;
     touchEndX.current = null;
   };
+  
+  // Handle download of current media
+  const handleDownload = async () => {
+    if (mediaItems.length === 0 || isDownloading) return;
+    
+    const url = mediaItems[currentMediaIndex].url;
+    const fileName = url.split('/').pop() || 'finance-meme';
+    
+    try {
+      setIsDownloading(true);
+      
+      // Fetch the file as a blob
+      const response = await fetch(url);
+      const blob = await response.blob();
+      
+      // Create a blob URL and trigger download
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      
+      // Clean up
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
-      <div className="relative w-full max-w-4xl bg-[#000a18] border border-blue-400/30 rounded-lg overflow-hidden">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+      <div className="relative w-full max-w-4xl bg-[#000a18] border border-blue-400/30 rounded-lg overflow-hidden max-h-[90vh]">
         {/* Close button */}
         <button 
           onClick={onClose}
@@ -111,10 +161,10 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
         </button>
         
         {/* Gallery content */}
-        <div className="p-8 flex flex-col items-center">
-          <h2 className="text-2xl text-blue-300 font-georgia mb-6">MEME Gallery</h2>
+        <div className="p-4 md:p-8 flex flex-col items-center">
+          <h2 className="text-xl md:text-2xl text-blue-300 font-georgia mb-4 md:mb-6">MEME Gallery</h2>
           <div 
-            className="w-full flex items-center justify-center border border-blue-400/30 rounded-lg overflow-hidden bg-black/50"
+            className="w-full flex items-center justify-center border border-blue-400/30 rounded-lg overflow-hidden bg-black/50 max-h-[60vh]"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -127,13 +177,14 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
                       mediaItems[currentMediaIndex].url, 
                       'video'
                     )} 
-                    className="w-full object-cover"
+                    className="w-full h-auto max-h-[60vh] object-contain mx-auto"
                     autoPlay
                     loop
                     muted
                     playsInline
                     disablePictureInPicture
                     disableRemotePlayback
+                    style={{ objectFit: 'contain' }}
                   />
                 </div>
               ) : (
@@ -144,7 +195,7 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
                       'image'
                     )}
                     alt={`Gallery item ${currentMediaIndex + 1}`}
-                    className="w-full object-cover"
+                    className="w-full h-auto max-h-[60vh] object-contain mx-auto"
                     width={800}
                     height={600}
                     unoptimized={false}
@@ -155,19 +206,35 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
               <p className="text-blue-100 font-georgia">No media items available</p>
             )}
           </div>
-          <div className="mt-6 flex justify-between w-full items-center">
+          <div className="mt-4 md:mt-6 flex flex-wrap justify-between w-full items-center gap-2">
             <button 
               onClick={goToPrevious}
-              className="px-4 py-2 bg-[#001428] border border-blue-400/30 text-blue-300 hover:border-blue-300 hover:text-blue-100 rounded-md font-georgia transition-all duration-300"
+              className="px-3 py-1.5 md:px-4 md:py-2 bg-[#001428] border border-blue-400/30 text-blue-300 hover:border-blue-300 hover:text-blue-100 rounded-md font-georgia transition-all duration-300 text-sm md:text-base"
             >
               Previous
             </button>
-            <span className="text-blue-300 font-georgia">
-              {mediaItems.length > 0 ? `${currentMediaIndex + 1} / ${mediaItems.length}` : '0 / 0'}
-            </span>
+            <button 
+              onClick={handleDownload}
+              disabled={isDownloading}
+              className={`px-3 py-1.5 md:px-4 md:py-2 bg-[#001428] border border-blue-400/30 text-blue-300 hover:border-blue-300 hover:text-blue-100 rounded-md font-georgia transition-all duration-300 flex items-center gap-1 md:gap-2 text-sm md:text-base ${isDownloading ? 'opacity-70 cursor-not-allowed' : ''}`}
+            >
+              {isDownloading ? (
+                <svg className="animate-spin h-4 w-4 md:h-5 md:w-5 text-blue-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="md:w-4 md:h-4">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              )}
+              {isDownloading ? 'Downloading...' : 'Download'}
+            </button>
             <button 
               onClick={goToNext}
-              className="px-4 py-2 bg-[#001428] border border-blue-400/30 text-blue-300 hover:border-blue-300 hover:text-blue-100 rounded-md font-georgia transition-all duration-300"
+              className="px-3 py-1.5 md:px-4 md:py-2 bg-[#001428] border border-blue-400/30 text-blue-300 hover:border-blue-300 hover:text-blue-100 rounded-md font-georgia transition-all duration-300 text-sm md:text-base"
             >
               Next
             </button>
