@@ -40,9 +40,10 @@ export default function LogoCenter() {
                   fill
                   priority
                   sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 700px"
-                  className={`object-contain 
+                  className={`object-contain ${styles.glowEffect}
                     ${isVisible ? styles.visible : ''}
                   `}
+                  style={{ animation: `${styles.intenseBlink} 0.8s infinite` }}
                 />
               </div>
             </div>
