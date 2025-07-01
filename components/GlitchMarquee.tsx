@@ -3,8 +3,8 @@
 import { memo } from 'react';
 
 const TEXT_VARIANTS = [
-  '富は健康 • WEALTH IS HEALTH • 富は健康',
-  'WEALTH IS HEALTH • 富は健康 • WEALTH IS HEALTH',
+  '富は健康 • TRILLIONS • 富は健康',
+  'TRILLIONS • 富は健康 • TRILLIONS',
   '富は健康 • 富は健康 • 富は健康'
 ];
 

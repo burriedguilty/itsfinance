@@ -131,13 +131,15 @@ export default function FinanceEntryText({
         className={`${styles.textContainer} ${isClicked ? styles.clicked : ''}`}
         onClick={() => setIsClicked(true)}
       >
-        <div
-          className={`${styles.mainText} ${isTypingComplete ? styles.clickable : ''}`}
-          onClick={handleClick}
-        >
-          {typedText}
-          {!isTypingComplete && <span className={styles.cursor}>|</span>}
-        </div>
+        {!showContractAddress && (
+          <div
+            className={`${styles.mainText} ${isTypingComplete ? styles.clickable : ''}`}
+            onClick={handleClick}
+          >
+            {typedText}
+            {!isTypingComplete && <span className={styles.cursor}>|</span>}
+          </div>
+        )}
         {isTypingComplete && showClick && (
           <>
             {clickPositions.map((pos, index) => (
@@ -171,7 +173,7 @@ export default function FinanceEntryText({
       )}
       
       {countdown !== null && (
-        <div className={`${styles.countdown} font-georgia normal-case`}>deploying capital . . .</div>
+        <div className={`${styles.countdown} font-georgia normal-case text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]`}>deploying capital . . .</div>
       )}
     </div>
   );
