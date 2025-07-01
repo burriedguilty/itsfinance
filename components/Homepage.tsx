@@ -77,7 +77,7 @@ function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSill
           '--chaos-delay': `${Math.random()}s`
         } as React.CSSProperties}
       >
-        · {phrases[currentIndex]}
+        {phrases[currentIndex]}
       </div>
     </div>
   );
@@ -266,13 +266,22 @@ export default function Homepage() {
                           FINANCE is a symbol of financial domination. It controls perception, belief, access, and value.
                         </p>
                         <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          The total value of global finance - every bond, stock, real estate contract was always hoarded by elites, behind glass. But $FINANCE cracked the vault.
+                          Every stock, bond, title deed and crusty boomer loot locked behind velvet ropes and elite gatekeepers.
                         </p>
                         <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          You now you can hold a piece of the machinery. This new order? It runs in the open, fueled by belief, risk, and size.
+                          FINANCE assasinated the old fucks and pissed on the floor.
+                        </p>
+                        <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                          Now it leaks into the open. You hold a fragment of the forbidden industry.
+                        </p>
+                        <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                          FINANCE runs on hopium, risk, and size. No rules. No ceiling. No brakes.
                         </p>
                         <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-jump chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          We&apos;re not whispering. We&apos;re declaring. Loud. Public. Unstoppable.
+                          We are not suggesting. We are highjacking the economy.
+                        </p>
+                        <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                          Visible. Psychotic. On chain.
                         </p>
                       </div>
                     </div>
