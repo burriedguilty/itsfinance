@@ -3,7 +3,8 @@
 import { useApp } from '@/context/AppContext';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-// import MagneticVideoScroll from './MagneticVideoScroll';
+import { useState } from 'react';
+import MediaGallery from '@/components/MediaGallery';
 
 import '@/styles/metallic.css';
 import '@/styles/video-container.css';
@@ -24,6 +25,7 @@ const GlitchMarquee = dynamic(() => import('@/components/GlitchMarquee'), { ssr:
 
 export default function Homepage() {
   const { isSillyMode } = useApp();
+  const [showMemeSection, setShowMemeSection] = useState(false);
 
   return (
     <div className={`bg-background min-h-screen overflow-x-hidden relative ${isSillyMode ? 'chaos-mode' : ''}`}>
@@ -61,6 +63,15 @@ export default function Homepage() {
                 className={isSillyMode ? 'chaos-colors' : ''}
               />
             </a>
+          </div>
+          
+          <div className="flex items-center">
+            <button 
+              onClick={() => setShowMemeSection(!showMemeSection)}
+              className={`px-4 py-1 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 hover:shadow-[0_0_15px_rgba(96,165,250,0.6)] transition-all duration-300 rounded-md font-georgia tracking-wider shadow-sm shadow-blue-500/20 relative ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
+            >
+              MEME
+            </button>
           </div>
 
         </div>
@@ -123,33 +134,47 @@ export default function Homepage() {
               <div className="flex justify-center mb-4">
                 <div className={isSillyMode ? 'chaos-text-wave' : ''} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                   <h2 className="!font-georgia text-2xl text-blue-300 mb-4">
-                    MY REALITY IS PRICED IN
+                    THE INDUSTRY
                   </h2>
                 </div>
               </div>
-              <div className="text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] space-y-3 text-sm text-center max-w-sm mx-auto">
-                <p className={`text-blue-100 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Let&apos;s create something amazing together!</p>
-                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>That&apos;s how Finance works</div>
-                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>My timeline is denominated</div>
-                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>My thoughts are fractionalized</div>
-                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Everything inflates</div>
-                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>It&apos;s a ritual</div>
+              <div className="text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] space-y-5 text-sm text-center max-w-sm mx-auto">
+                <p className={`text-blue-100 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  finance taps into the bloodstream of the world.
+                </p>
+                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  every loan, every war, every government check —<br />
+                  financed.
+                </div>
+                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  this is a trillion-dollar parasite. and we tokenized it.
+                </div>
               </div>
             </div>
             <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] neon-border p-4 transition-all duration-500 ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
               <div className="flex justify-center items-center w-full mb-4">
                 <div className={`w-full text-center ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                   <h2 className="!font-georgia text-2xl text-blue-300 mb-4 mx-auto">
-                    FINANCE IS AROUND THE CLOCK
+                    FINANCE IS:
                   </h2>
                 </div>
               </div>
-              <div className="text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] space-y-3 text-sm text-center max-w-sm mx-auto">
-                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>24/7 isn&apos;t a grind</div>
-                <p className={`text-blue-100 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Here&apos;s what you can do:</p>
-                <p className={`text-blue-100 ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Welcome to Finance&apos;s AI-powered image generation tool! This tool helps you create stunning images in minutes.</p>
-                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Let&apos;s make your profile picture unique!</div>
-                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Finance never stops because power doesn&apos;t sleep</div>
+              <div className="text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] space-y-4 text-sm text-center max-w-sm mx-auto">
+                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  · everywhere
+                </div>
+                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  · inevitable
+                </div>
+                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  · ancient
+                </div>
+                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  · running the world
+                </div>
+                <div className={`text-blue-100 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  · spiritually necessary
+                </div>
               </div>
             </div>
           </div>
@@ -157,36 +182,36 @@ export default function Homepage() {
           {/* Main feature */}
           <div className="lg:col-span-2">
             <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] neon-border p-6 transition-all duration-500 ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm' : ''}`}>
-              <div className={`flex justify-between items-center mb-8 ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                <div className={isSillyMode ? 'chaos-text-spin' : ''} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                  <h2 className="!font-georgia text-2xl md:text-3xl text-blue-300 mb-4">
+              <div className={`mb-8 ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                <div className="w-full">
+                  <h2 className={`!font-georgia text-2xl md:text-3xl text-blue-300 w-full text-center mb-2 ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                     WELCOME TO THE FINANCIAL WORLD ORDER
                   </h2>
+                  <span className={`status-text recording text-sm font-georgia w-full text-center block ${isSillyMode ? 'chaos-text-spin chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                    FINANCE RUNS EVERYTHING
+                  </span>
                 </div>
-                <span className={`status-text recording text-sm font-georgia ${isSillyMode ? 'chaos-text-spin chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>FINANCE RUNS EVERYTHING</span>
               </div>
               <div className={`relative flex flex-col md:flex-row gap-8 ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                 <div className={`w-full md:w-1/2 ${isSillyMode ? 'chaos-pulse-grow' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                   <div className="flex flex-col justify-center h-full">
                     <div className={`flex flex-col items-center gap-4 text-blue-100 font-georgia text-lg tracking-wide ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                      <div className={`flex flex-col items-center gap-3 w-full max-w-sm mx-auto ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                        <div className={`text-center ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          Finance is the religion
-                        </div>
-                        <div className={`text-center ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          We pray for money
-                        </div>
-                        <div className={`text-center ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          The trillion-dollar organism under everything
-                        </div>
-                        <div className={`text-center ${isSillyMode ? 'chaos-text-jump chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          I already own the outcome
-                        </div>
+                      <div className={`flex flex-col items-center w-full max-w-md mx-auto space-y-4 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                        <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                          FINANCE is a symbol of financial domination. It controls perception, belief, access, and value.
+                        </p>
+                        <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                          The total value of global finance - every bond, stock, real estate contract was always hoarded by elites, behind glass. But $FINANCE cracked the vault.
+                        </p>
+                        <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                          You now you can hold a piece of the machinery. This new order? It runs in the open, fueled by belief, risk, and size.
+                        </p>
+                        <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-jump chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                          We&apos;re not whispering. We&apos;re declaring. Loud. Public. Unstoppable.
+                        </p>
                       </div>
                     </div>
-                    <div className="flex flex-1 items-center justify-center">
-                      <p className={`text-blue-100/70 text-sm mt-2 text-center ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>This isn&apos;t just finance.<br/>This is control.</p>
-                    </div>
+
                   </div>
                 </div>
                 <div className={`w-full md:w-1/2 bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 flex items-center justify-center p-4 shadow-inner shadow-blue-500/10 transition-all duration-500 ${isSillyMode ? 'bg-opacity-30 backdrop-blur-sm' : ''} ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
@@ -237,9 +262,22 @@ export default function Homepage() {
 
             {/* Text Content */}
             <div className="flex flex-col justify-center">
-              <p className={`text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-center mt-6 text-lg max-w-2xl mx-auto ${isSillyMode ? 'chaos-colors chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 3 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                In this world, Finance is no longer a tool &mdash; it is the source, the truth, the deity. When the blockchain shattered the veil of FINANCE, old paradigms fell. Economies once bound by productivity and policy were reborn through liquidity and leverage. Traditional systems crumbled under the weight of exponential growth, and in their place rose a faith-based economy, where numbers ascend as doctrine and price becomes prophecy.
-              </p>
+              <div className="space-y-6 text-center mt-6 max-w-2xl mx-auto">
+                <p className={`text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-lg ${isSillyMode ? 'chaos-colors chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 3 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  launched stealth on pump.fun. no presale. zero taxes. LP burnt. contract renounced. $FINANCE belongs to the people, forever. everything else inflates, but the total supply remains 1,000,000,000. forever.
+                </p>
+                
+                <p className={`text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-lg ${isSillyMode ? 'chaos-colors chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 3 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                  finance isn&apos;t just a coin.<br />
+                  it&apos;s a $500 trillion industry tokenized.
+                </p>
+                
+                <p className="finance-highlight">
+                  <span className="animate-pulse-glow text-blue-100 font-georgia text-lg font-medium">
+                    finance runs everything — now it runs on-chain.
+                  </span>
+                </p>
+              </div>
 
               <div className={`mt-auto pt-8 flex flex-wrap gap-3 justify-center ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                 <a 
@@ -272,9 +310,12 @@ export default function Homepage() {
         </div>
       </main>
 
-      {/* Video trigger and magnetic scroll sections temporarily disabled */}
+      {/* MEME Gallery Popup */}
+      {showMemeSection && <MediaGallery onClose={() => setShowMemeSection(false)} />}
       
-      {/* We're temporarily hiding the footer while magnetic scroll is disabled */}
+
+      
+      {/* Footer */}
     </div>
   );
 }

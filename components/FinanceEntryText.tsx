@@ -28,7 +28,7 @@ export default function FinanceEntryText({
   const [showLoadingTerminal, setShowLoadingTerminal] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   
-  const mainText = 'THEY DIDN\'T WANT YOU TO FIND THIS';
+  const mainText = 'they didn\'t want you to find this';
   const contractAddress = 'FSQ4CBemMh7SBAC6odzCaRCvQZPc5i4QTLTFTSAdpump';
   
   // Handle visibility after delay

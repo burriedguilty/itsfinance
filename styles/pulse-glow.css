@@ -1,0 +1,48 @@
+@keyframes pulse-glow {
+  0% {
+    text-shadow: 0 0 5px rgba(147, 197, 253, 0.3);
+    color: rgba(147, 197, 253, 0.9);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(147, 197, 253, 0.8), 0 0 25px rgba(96, 165, 250, 0.6);
+    color: rgba(191, 219, 254, 1);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(147, 197, 253, 0.3);
+    color: rgba(147, 197, 253, 0.9);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 1.5s infinite ease-in-out;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+.finance-highlight {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+}
+
+.finance-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.25rem;
+  background: linear-gradient(to right, rgba(37, 99, 235, 0.1), rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1));
+  z-index: -1;
+  animation: pulse-bg 3s infinite ease-in-out;
+}
+
+@keyframes pulse-bg {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}

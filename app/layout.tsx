@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import './globals.css'
 import '@/styles/global.css';
+import '@/styles/pulse-glow.css';
 import "./chaos.css";
 import { Inter } from "next/font/google";
 import { AppProvider } from '@/context/AppContext';
