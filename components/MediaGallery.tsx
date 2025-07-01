@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, TouchEvent } from 'react';
+import { useState, useRef, TouchEvent } from 'react';
 import Image from 'next/image';
 
 type MediaItem = {
