@@ -173,7 +173,7 @@ export default function FinanceEntryText({
       )}
       
       {countdown !== null && (
-        <div className={`${styles.countdown} font-georgia normal-case text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]`}>deploying capital . . .</div>
+        <div className="font-georgia text-xl tracking-wider drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] text-shadow text-white">deploying capital . . .</div>
       )}
     </div>
   );

@@ -51,18 +51,24 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
   const touchEndX = useRef<number | null>(null);
   const minSwipeDistance = 50; // Minimum distance in pixels to trigger a swipe
   const [isDownloading, setIsDownloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Media items state, fetched from Cloudinary folder
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch('/api/cloudinary-list?folder=MEME')
       .then(res => res.json())
       .then((urls: string[]) => {
-        setMediaItems(urls.map(url => ({ url })));
+        // Shuffle the URLs once when they're first fetched
+        const shuffledUrls = shuffleArray(urls.map(url => ({ url })));
+        setMediaItems(shuffledUrls);
+        setIsLoading(false);
       })
       .catch(err => {
         console.error('Failed to fetch media from Cloudinary:', err);
+        setIsLoading(false);
       });
   }, []);
 
@@ -77,13 +83,7 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
     return newArray;
   };
   
-  // Randomize media items on component mount only
-  useEffect(() => {
-    if (mediaItems.length > 0) {
-      setMediaItems(shuffleArray(mediaItems));
-    }
-    // Only shuffle when mediaItems changes and is non-empty
-  }, [mediaItems]);
+  // No need for a second shuffle effect since we shuffle when fetching
   
   const goToNext = () => {
     setCurrentMediaIndex((prev) => (prev + 1) % mediaItems.length);
@@ -190,7 +190,12 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {mediaItems.length > 0 ? (
+            {isLoading ? (
+              <div className="flex flex-col items-center justify-center p-10">
+                <div className="w-8 h-8 border-2 border-blue-300 border-t-transparent rounded-full animate-spin mb-4"></div>
+                <p className="text-blue-300 font-mono text-sm">Loading memes...</p>
+              </div>
+            ) : mediaItems.length > 0 ? (
               getMediaType(mediaItems[currentMediaIndex].url) === 'video' ? (
                 <div className="w-full">
                   <video 
