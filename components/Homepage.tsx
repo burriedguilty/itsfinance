@@ -42,11 +42,14 @@ function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSill
       }, 500); // Fade out duration
     }, 3000); // Change text every 3 seconds
 
-    // Fix for ref warning
+    // Fix for ref warning - store the current value inside the effect
     const currentGlowRef = glowRef.current;
     return () => {
       clearInterval(interval);
-      void currentGlowRef; // use if needed for cleanup
+      // Use the captured value in cleanup
+      if (currentGlowRef) {
+        // Any cleanup needed for the ref
+      }
     };
   }, [phrases.length]);
 
@@ -246,16 +249,19 @@ export default function Homepage() {
                     <div className={`flex flex-col items-center w-full gap-4 text-blue-100 font-georgia text-[calc(1rem-0.5pt)] tracking-wide ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                       <div className={`flex flex-col items-center w-full max-w-md mx-auto space-y-4 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                         <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          FINANCE is a symbol of financial domination. It controls perception, belief, access, and value.
+                          First it was salt, then gold, then paper backed by gold, then just paper.
                         </p>
                         <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          Every stock, bond, title deed and crusty boomer loot locked behind velvet ropes and elite gatekeepers.
+                          NOW IT&apos;S FUCK YOU. PEASANT.
                         </p>
                         <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-spin' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          FINANCE assasinated the old fucks and pissed on the floor.
+                          They print, you work.
+                          They fake debt, you pay it.
                         </p>
                         <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-jump' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                          Now it leaks into the open. You hold a fragment of the forbidden industry.
+                          Wake the fuck up and switch the narrative.
+                          Finance isn&apos;t controlled.
+                          Finance isn&apos;t taxed.
                         </p>
                         <p className={`text-center leading-relaxed ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                           FINANCE runs on hopium, risk, and size. No rules. No ceiling. No brakes.

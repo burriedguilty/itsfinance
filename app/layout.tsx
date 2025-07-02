@@ -10,8 +10,8 @@ import ClientButtons from '../components/ClientButtons';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "IT'S FINANCE",
-  description: "TO THE FINANCIAL FREEDOM",
+  title: "FINANCE COIN",
+  description: "TRILLIONS TOKENIZED",
 };
 
 export default function RootLayout({
