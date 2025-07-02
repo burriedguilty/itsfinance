@@ -213,7 +213,7 @@ export default function Homepage() {
         </div>
         <div className={`grid grid-cols-1 lg:grid-cols-3 gap-6 ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
           {/* Left sidebar */}
-          <div className={`space-y-4 ${isSillyMode ? 'chaos-random' : ''}`} style={{ '--random-duration': `${Math.random() * 3 + 1}s` } as React.CSSProperties}>
+          <div className={`space-y-4 block ${isSillyMode ? 'chaos-random' : ''}`} style={{ '--random-duration': `${Math.random() * 3 + 1}s` } as React.CSSProperties}>
             <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] neon-border p-4 transition-all duration-500 ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
               <div className="relative h-[40px] mb-4 flex justify-center">
                 <div className={isSillyMode ? 'chaos-flip' : ''}>
@@ -283,7 +283,7 @@ export default function Homepage() {
           </div>
           
           {/* Main feature */}
-          <div className="lg:col-span-2">
+          <div className="hidden md:block col-span-1 lg:col-span-2 space-y-6">
             <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] neon-border p-6 transition-all duration-500 ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm' : ''}`}>
               <div className={`mb-8 ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                 <div className="w-full">
@@ -329,7 +329,7 @@ export default function Homepage() {
 
                   </div>
                 </div>
-                <div className={`w-full md:w-1/2 bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 flex items-start justify-center p-4 pt-0 shadow-inner shadow-blue-500/10 transition-all duration-500 ${isSillyMode ? 'bg-opacity-30 backdrop-blur-sm' : ''} ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                <div className={`hidden md:flex w-full md:w-1/2 bg-[#001020] rounded-lg overflow-hidden border border-blue-400/20 flex items-start justify-center p-4 pt-0 shadow-inner shadow-blue-500/10 transition-all duration-500 ${isSillyMode ? 'bg-opacity-30 backdrop-blur-sm' : ''} ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
                   <video 
                     src="/vid1.mp4" 
                     className={`w-full h-auto filter drop-shadow-[0_0_8px_rgba(96,165,250,0.2)] ${isSillyMode ? 'chaos-zoom' : ''}`} 
