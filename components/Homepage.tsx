@@ -165,11 +165,11 @@ export default function Homepage() {
                 </div>
               </div>
               <div className="text-blue-100 font-mono text-sm space-y-3 text-center">
-                <p className="text-blue-100 font-georgia text-base mb-2">Finance is money blood, bombs, and bullshit.</p>
+                <p className="text-blue-100 font-georgia text-base mb-2">Finance is the core of the entire planet.</p>
                 <p><span className="font-bold">Every war?</span> Financed.<br/>
                 <span className="font-bold">Debt?</span> Financed.<br/>
-                <span className="font-bold">Goverment budgets?</span> Financed.</p>
-                <p className="mt-2"><span className="font-bold">Your freedom?</span> Leased with interest.</p>
+                <span className="font-bold">Goverment budgets?</span> Financed.<br/>
+                <span className="font-bold">Your freedom?</span> Leased with interest.</p>
                 <p className="mt-2">It’s not a just a system.<br/>It’s a parasite wearing a tie pulling your strings.</p>
                 <p className="font-bold text-white mt-4 drop-shadow-[0_0_12px_rgba(147,197,253,0.9)] animate-pulse-glow uppercase tracking-wider break-words">FUCK THE SYSTEM AND RECLAIM YOUR FREEDOM.</p>
               </div>
