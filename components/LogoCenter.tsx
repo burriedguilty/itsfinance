@@ -1,18 +1,45 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import styles from './LogoCenter.module.css';
 
 export default function LogoCenter() {
   const [isVisible, setIsVisible] = useState(false);
-  
+  const [videoSrc, setVideoSrc] = useState('');
+
   useEffect(() => {
-    // Add a small delay before showing the logo for a nice entrance effect
+    // Detect Safari browser and orientation
+    const detectBrowserAndOrientation = () => {
+      const ua = window.navigator.userAgent;
+      const iOS = /iPad|iPhone|iPod/.test(ua) || 
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(ua) || iOS;
+      const isPortraitMode = window.innerHeight > window.innerWidth;
+      
+      // Set video source based on detection
+      if (isSafariBrowser || isPortraitMode) {
+        setVideoSrc('/financeios.mov');
+      } else {
+        setVideoSrc('/finance.webm');
+      }
+    };
+    
+    // Set initial values
+    detectBrowserAndOrientation();
+    
+    // Listen for orientation changes
+    window.addEventListener('resize', detectBrowserAndOrientation);
+    
+    // Delay the appearance of the logo for a smoother page load
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 300);
+    }, 100);
     
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', detectBrowserAndOrientation);
+    };
   }, []);
   
   return (
@@ -33,11 +60,12 @@ export default function LogoCenter() {
             <div className={styles.logoContainer}>
               {/* Logo */}
               <div className={`relative z-10 ${styles.responsiveLogo}`}>
-                {/* Video with conditional sources for different devices */}
+                {/* Video with dynamically selected source */}
                 <video
                   className={`w-full h-full object-contain ${styles.glowEffect}
                     ${isVisible ? styles.visible : ''}
                   `}
+                  src={videoSrc}
                   autoPlay
                   loop
                   muted
@@ -47,16 +75,16 @@ export default function LogoCenter() {
                     backgroundColor: 'transparent'
                   }}
                 >
-                  {/* iOS/Mobile format */}
-                  <source src="/financeios.mov" type="video/quicktime" />
-                  {/* Desktop format with alpha channel */}
-                  <source src="/finance.webm" type="video/webm" />
                   {/* Fallback */}
-                  <img
-                    src="/finance.png" 
-                    alt="FINANCE"
-                    className="w-full h-full object-contain"
-                  />
+                  <div className="w-full h-full relative">
+                    <Image
+                      src="/finance.png"
+                      alt="FINANCE"
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      priority
+                    />
+                  </div>
                 </video>
               </div>
             </div>
