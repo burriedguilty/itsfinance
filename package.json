@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^10.4.2",
     "@types/mime-types": "^3.0.1",
+    "@types/three": "^0.178.0",
     "axios": "^1.10.0",
     "cloudinary": "^2.7.0",
     "file-type": "^21.0.0",

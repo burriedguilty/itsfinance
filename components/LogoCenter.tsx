@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import styles from './LogoCenter.module.css';
 
 export default function LogoCenter() {
@@ -34,16 +33,16 @@ export default function LogoCenter() {
             <div className={styles.logoContainer}>
               {/* Logo */}
               <div className={`relative z-10 ${styles.responsiveLogo}`}>
-                <Image
-                  src="/finance.png"
-                  alt="FINANCE"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 700px"
-                  className={`object-contain ${styles.glowEffect}
+                <video
+                  src="/finance.webm"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className={`w-full h-full object-contain ${styles.glowEffect}
                     ${isVisible ? styles.visible : ''}
                   `}
-                  style={{ animation: `${styles.intenseBlink} 0.8s infinite` }}
+                  style={{ animation: `${styles.intenseBlink} 1.12s infinite` }}
                 />
               </div>
             </div>

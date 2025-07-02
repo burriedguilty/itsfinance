@@ -51,13 +51,15 @@ function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSill
   useEffect(() => {
     if (!glowRef.current) return;
     
+    // Store the ref value inside the effect to use in cleanup
+    const currentGlowRef = glowRef.current;
+    
     // Add a CSS class for animation instead of constantly updating state
-    glowRef.current.classList.add('text-glow-animation');
+    currentGlowRef.classList.add('text-glow-animation');
     
     return () => {
-      if (glowRef.current) {
-        glowRef.current.classList.remove('text-glow-animation');
-      }
+      // Use the stored value in cleanup
+      currentGlowRef.classList.remove('text-glow-animation');
     };
   }, []);
 
