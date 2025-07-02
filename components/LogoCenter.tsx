@@ -33,26 +33,31 @@ export default function LogoCenter() {
             <div className={styles.logoContainer}>
               {/* Logo */}
               <div className={`relative z-10 ${styles.responsiveLogo}`}>
-                {/* Use Image component for better cross-platform compatibility */}
-                <div 
-                  className={`w-full h-full relative ${styles.glowEffect}
-                    ${isVisible ? styles.visible : ''} ${styles.imageContainer || ''}
+                {/* Video with conditional sources for different devices */}
+                <video
+                  className={`w-full h-full object-contain ${styles.glowEffect}
+                    ${isVisible ? styles.visible : ''}
                   `}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   style={{ 
                     animation: `${styles.intenseBlink} 1.12s infinite`,
                     backgroundColor: 'transparent'
                   }}
                 >
+                  {/* iOS/Mobile format */}
+                  <source src="/financeios.mov" type="video/quicktime" />
+                  {/* Desktop format with alpha channel */}
+                  <source src="/finance.webm" type="video/webm" />
+                  {/* Fallback */}
                   <img
                     src="/finance.png" 
                     alt="FINANCE"
                     className="w-full h-full object-contain"
-                    style={{
-                      mixBlendMode: 'screen',
-                      filter: 'brightness(1.2) contrast(1.1)'
-                    }}
                   />
-                </div>
+                </video>
               </div>
             </div>
           </div>
