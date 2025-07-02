@@ -52,15 +52,20 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
   const minSwipeDistance = 50; // Minimum distance in pixels to trigger a swipe
   const [isDownloading, setIsDownloading] = useState(false);
   
-  // Original Cloudinary media URLs - using public URLs with proper formats
-  const originalMediaItems: MediaItem[] = [
-    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/f_mp4/v1751374268/IMG_6515-moshed-06-30-17-22-32-990.mp4' },
-    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/f_mp4/v1751374272/FINANCE_SCHIZ-001.mp4' },
-    { url: 'https://res.cloudinary.com/dfjqqnv3x/video/upload/f_mp4/v1751374279/FINANCE_SCHIZ-002.mp4' },
-  ];
-  
-  // State for randomized media items
+  // Media items state, fetched from Cloudinary folder
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
+
+  useEffect(() => {
+    fetch('/api/cloudinary-list?folder=MEME')
+      .then(res => res.json())
+      .then((urls: string[]) => {
+        setMediaItems(urls.map(url => ({ url })));
+      })
+      .catch(err => {
+        console.error('Failed to fetch media from Cloudinary:', err);
+      });
+  }, []);
+
   
   // Shuffle function defined outside useEffect to avoid recreation
   const shuffleArray = (array: MediaItem[]): MediaItem[] => {
@@ -74,9 +79,11 @@ export default function MediaGallery({ onClose }: MediaGalleryProps) {
   
   // Randomize media items on component mount only
   useEffect(() => {
-    setMediaItems(shuffleArray(originalMediaItems));
-    // Empty dependency array means this runs once on mount
-  }, []);
+    if (mediaItems.length > 0) {
+      setMediaItems(shuffleArray(mediaItems));
+    }
+    // Only shuffle when mediaItems changes and is non-empty
+  }, [mediaItems]);
   
   const goToNext = () => {
     setCurrentMediaIndex((prev) => (prev + 1) % mediaItems.length);

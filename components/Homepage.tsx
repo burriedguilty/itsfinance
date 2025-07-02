@@ -42,7 +42,12 @@ function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSill
       }, 500); // Fade out duration
     }, 3000); // Change text every 3 seconds
 
-    return () => clearInterval(interval);
+    // Fix for ref warning
+    const currentGlowRef = glowRef.current;
+    return () => {
+      clearInterval(interval);
+      void currentGlowRef; // use if needed for cleanup
+    };
   }, [phrases.length]);
 
   // Rapid blinking glow effect using CSS animation instead of state updates
