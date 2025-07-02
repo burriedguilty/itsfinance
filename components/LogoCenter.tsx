@@ -42,7 +42,11 @@ export default function LogoCenter() {
                   className={`w-full h-full object-contain ${styles.glowEffect}
                     ${isVisible ? styles.visible : ''}
                   `}
-                  style={{ animation: `${styles.intenseBlink} 1.12s infinite` }}
+                  style={{ 
+                    animation: `${styles.intenseBlink} 1.12s infinite`,
+                    backgroundColor: 'transparent',
+                    WebkitMaskImage: '-webkit-radial-gradient(white, black)' // Fix for Safari
+                  }}
                 />
               </div>
             </div>
