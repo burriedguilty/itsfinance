@@ -72,6 +72,7 @@ function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSill
       <div 
         ref={glowRef}
         className={`text-3xl transition-opacity duration-500 text-glow-animation ${isAnimating ? 'opacity-0' : 'opacity-100'} ${chaosEffect}`}
+
         style={{ 
           '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, 
           '--chaos-delay': `${Math.random()}s`
@@ -154,48 +155,23 @@ export default function Homepage() {
           {/* Left sidebar */}
           <div className={`space-y-4 ${isSillyMode ? 'chaos-random' : ''}`} style={{ '--random-duration': `${Math.random() * 3 + 1}s` } as React.CSSProperties}>
             <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] neon-border p-4 transition-all duration-500 ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-              <div className="relative h-[24px] mb-4 flex justify-center">
+              <div className="relative h-[40px] mb-4 flex justify-center">
                 <div className={isSillyMode ? 'chaos-flip' : ''}>
                   <div className={isSillyMode ? 'chaos-text-wave' : ''} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
-                    <h2 className="!font-georgia text-lg md:text-xl text-blue-300 mb-2">
-                      THE SYSTEM BOWS TO FINANCE
+                    <h2 className="!font-georgia text-xl md:text-2xl text-blue-300 mb-2 uppercase text-center">
+                      FINANCE RUNS EVERYTHING
                     </h2>
                   </div>
                 </div>
               </div>
-              <div className="text-blue-100 font-mono text-sm space-y-2">
-                <div 
-                  className={`flex items-center justify-between gap-2 ${isSillyMode ? 'chaos-random' : ''}`} 
-                  style={{ '--random-duration': `${Math.random() * 2 + 1}s` } as React.CSSProperties}
-                >
-                  <span className={`text-blue-100/70 line-through ${isSillyMode ? 'chaos-colors chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Elections?</span>
-                  <span className={`text-blue-100/30 tracking-[.25em] text-center px-2 flex-1 ${isSillyMode ? 'chaos-vibrate' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.2 + 0.2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>.......</span>
-                  <span className={`font-medium text-blue-100 animate-pulse drop-shadow-[0_0_8px_rgba(147,197,253,0.8)] ${isSillyMode ? 'chaos-text-jump chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>financed.</span>
-                </div>
-                <div 
-                  className={`flex items-center justify-between gap-2 ${isSillyMode ? 'chaos-random' : ''}`} 
-                  style={{ '--random-duration': `${Math.random() * 2 + 1}s` } as React.CSSProperties}
-                >
-                  <span className={`text-blue-100/70 line-through ${isSillyMode ? 'chaos-colors chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Wars?</span>
-                  <span className={`text-blue-100/30 tracking-[.25em] text-center px-2 flex-1 ${isSillyMode ? 'chaos-vibrate' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.2 + 0.2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>.......</span>
-                  <span className={`font-medium text-blue-100 animate-pulse drop-shadow-[0_0_8px_rgba(147,197,253,0.8)] ${isSillyMode ? 'chaos-text-jump chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>financed.</span>
-                </div>
-                <div 
-                  className={`flex items-center justify-between gap-2 ${isSillyMode ? 'chaos-random' : ''}`} 
-                  style={{ '--random-duration': `${Math.random() * 2 + 1}s` } as React.CSSProperties}
-                >
-                  <span className={`text-blue-100/70 line-through ${isSillyMode ? 'chaos-colors chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>Religions?</span>
-                  <span className={`text-blue-100/30 tracking-[.25em] text-center px-2 flex-1 ${isSillyMode ? 'chaos-vibrate' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.2 + 0.2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>.......</span>
-                  <span className={`font-medium text-blue-100 animate-pulse drop-shadow-[0_0_8px_rgba(147,197,253,0.8)] ${isSillyMode ? 'chaos-text-jump chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>financed.</span>
-                </div>
-                <div 
-                  className={`flex items-center justify-between gap-2 ${isSillyMode ? 'chaos-random' : ''}`} 
-                  style={{ '--random-duration': `${Math.random() * 2 + 1}s` } as React.CSSProperties}
-                >
-                  <span className={`text-blue-100/70 line-through ${isSillyMode ? 'chaos-colors chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>The house you&apos;re in?</span>
-                  <span className={`text-blue-100/30 tracking-[.25em] text-center px-2 flex-1 ${isSillyMode ? 'chaos-vibrate' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.2 + 0.2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>.......</span>
-                  <span className={`font-medium text-blue-100 animate-pulse drop-shadow-[0_0_8px_rgba(147,197,253,0.8)] ${isSillyMode ? 'chaos-text-jump chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>financed.</span>
-                </div>
+              <div className="text-blue-100 font-mono text-sm space-y-3 text-center">
+                <p className="text-blue-100 font-georgia text-base mb-2">Finance is money blood, bombs, and bullshit.</p>
+                <p><span className="font-bold">Every war?</span> Financed.<br/>
+                <span className="font-bold">Debt?</span> Financed.<br/>
+                <span className="font-bold">Goverment budgets?</span> Financed.</p>
+                <p className="mt-2"><span className="font-bold">Your freedom?</span> Leased with interest.</p>
+                <p className="italic mt-2">It’s not a just a system.<br/>It’s a parasite wearing a tie pulling your strings.</p>
+                <p className="font-bold text-white mt-4 drop-shadow-[0_0_12px_rgba(147,197,253,0.9)] animate-pulse-glow uppercase tracking-wider break-words">FUCK THE SYSTEM AND RECLAIM YOUR FREEDOM.</p>
               </div>
             </div>
             <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] neon-border p-4 transition-all duration-500 ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 2}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
@@ -228,14 +204,16 @@ export default function Homepage() {
                   </h2>
                 </div>
               </div>
-              <div className="text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-center max-w-sm mx-auto pt-0 mt-0 h-32 flex items-center justify-center">
+              <div className="text-blue-100 font-georgia leading-relaxed drop-shadow-[0_0_2px_rgba(147,197,253,0.3)] text-center w-full max-w-sm mx-auto pt-0 mt-0 flex items-center justify-center min-h-[4rem] md:min-h-[7rem]">
                 <AnimatedTextCycle 
                   phrases={[
+                    'a ritual',
+                    'pure belief',
+                    'digital cocaine',
+                    'power',
                     'everywhere',
-                    'inevitable',
-                    'ancient',
-                    'running the world',
-                    'spiritually necessary'
+                    'never enough',
+                    'the truth'
                   ]}
                   isSillyMode={isSillyMode}
                 />
