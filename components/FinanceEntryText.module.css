@@ -159,6 +159,13 @@
   animation: whitePulse 1s infinite alternate;
 }
 
+@media (max-width: 480px) {
+  .countdown {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+}
+
 @keyframes whitePulse {
   from { opacity: 0.7; text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
   to { opacity: 1; text-shadow: 0 0 15px rgba(255, 255, 255, 0.9); }

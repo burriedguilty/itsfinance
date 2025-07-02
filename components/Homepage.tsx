@@ -91,7 +91,7 @@ export default function Homepage() {
   const [showPfpPopup, setShowPfpPopup] = useState(false);
 
   return (
-    <div className={`bg-background min-h-screen overflow-x-hidden relative ${isSillyMode ? 'chaos-mode' : ''}`}>
+    <div className={`bg-background min-h-screen overflow-x-hidden relative pb-20 md:pb-0 ${isSillyMode ? 'chaos-mode' : ''}`}>
       {/* Background layers */}
       <div className="fixed inset-0 z-0">
         <video
@@ -131,13 +131,13 @@ export default function Homepage() {
           <div className="flex items-center space-x-3">
             <button 
               onClick={() => setShowMemeSection(!showMemeSection)}
-              className={`px-4 py-1 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 hover:shadow-[0_0_15px_rgba(96,165,250,0.6)] transition-all duration-300 rounded-md font-georgia tracking-wider shadow-sm shadow-blue-500/20 relative ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
+              className={`px-3 py-0.5 text-xs md:px-4 md:py-1 md:text-sm bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 hover:shadow-[0_0_15px_rgba(96,165,250,0.6)] transition-all duration-300 rounded-md font-georgia tracking-wider shadow-sm shadow-blue-500/20 relative ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
             >
               MEMES
             </button>
             <button 
               onClick={() => setShowPfpPopup(true)}
-              className={`px-4 py-1 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 hover:shadow-[0_0_15px_rgba(96,165,250,0.6)] transition-all duration-300 rounded-md font-georgia tracking-wider shadow-sm shadow-blue-500/20 relative ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
+              className={`px-3 py-0.5 text-xs md:px-4 md:py-1 md:text-sm bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 hover:shadow-[0_0_15px_rgba(96,165,250,0.6)] transition-all duration-300 rounded-md font-georgia tracking-wider shadow-sm shadow-blue-500/20 relative ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
             >
               PFP MAKER
             </button>
@@ -170,7 +170,7 @@ export default function Homepage() {
                 <span className="font-bold">Debt?</span> Financed.<br/>
                 <span className="font-bold">Goverment budgets?</span> Financed.</p>
                 <p className="mt-2"><span className="font-bold">Your freedom?</span> Leased with interest.</p>
-                <p className="italic mt-2">It’s not a just a system.<br/>It’s a parasite wearing a tie pulling your strings.</p>
+                <p className="mt-2">It’s not a just a system.<br/>It’s a parasite wearing a tie pulling your strings.</p>
                 <p className="font-bold text-white mt-4 drop-shadow-[0_0_12px_rgba(147,197,253,0.9)] animate-pulse-glow uppercase tracking-wider break-words">FUCK THE SYSTEM AND RECLAIM YOUR FREEDOM.</p>
               </div>
             </div>
@@ -290,7 +290,7 @@ export default function Homepage() {
         <div className={`mt-8 neon-border p-6 transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-[#001830] to-[#000c24] ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm chaos-bg' : ''}`}>
           <div className={`flex justify-between items-center mb-4 ${isSillyMode ? 'chaos-shake' : ''}`}>
             <h2 className="!font-georgia text-2xl md:text-4xl text-blue-300 mb-4">
-              IT&apos;S JUST FINANCE
+              IT&apos;S NOT JUST FINANCE
             </h2>
             <span className={`status-text recording text-sm font-georgia ${isSillyMode ? 'chaos-colors chaos-bounce' : ''}`}>FINANCE RUNS EVERYTHING</span>
           </div>
