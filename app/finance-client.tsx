@@ -78,9 +78,9 @@ export default function FinanceClient() {
         </div>
       </div>
       
-      {/* Finance Entry Text in completely separate div below logo */}
-      <div className="absolute bottom-[28.5%] w-full flex justify-center z-10">
-        <div className={isSillyMode ? 'text-pulse' : ''}>
+      {/* Finance Entry Text in completely separate div below logo - responsive positioning */}
+      <div className="absolute w-full flex justify-center z-10 bottom-[15%] sm:bottom-[18%] md:bottom-[20%] lg:bottom-[22%]">
+        <div className={`${isSillyMode ? 'text-pulse' : ''} transform transition-transform duration-500`}>
           <FinanceEntryText delay={2000} typingSpeed={50} />
         </div>
       </div>

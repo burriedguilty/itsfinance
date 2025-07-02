@@ -6,30 +6,28 @@ import styles from './LogoCenter.module.css';
 
 export default function LogoCenter() {
   const [isVisible, setIsVisible] = useState(false);
-  const [videoSrc, setVideoSrc] = useState('');
+  const [isMobileOrSafari, setIsMobileOrSafari] = useState(false);
 
   useEffect(() => {
-    // Detect Safari browser and orientation
-    const detectBrowserAndOrientation = () => {
-      const ua = window.navigator.userAgent;
-      const iOS = /iPad|iPhone|iPod/.test(ua) || 
-        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      const isSafariBrowser = /^((?!chrome|android).)*safari/i.test(ua) || iOS;
-      const isPortraitMode = window.innerHeight > window.innerWidth;
-      
-      // Set video source based on detection
-      if (isSafariBrowser || isPortraitMode) {
-        setVideoSrc('/financeios.mov');
-      } else {
-        setVideoSrc('/finance.webm');
+    // Detect if the browser is Safari or mobile device
+    const detectBrowser = () => {
+      if (typeof window !== 'undefined') {
+        const ua = window.navigator.userAgent;
+        const iOS = /iPad|iPhone|iPod/.test(ua) || 
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+        const isPortrait = window.innerHeight > window.innerWidth;
+        
+        // Set to true for Safari, iOS devices, or portrait mode (likely mobile)
+        setIsMobileOrSafari(isSafari || iOS || isPortrait);
       }
     };
     
-    // Set initial values
-    detectBrowserAndOrientation();
+    detectBrowser();
     
-    // Listen for orientation changes
-    window.addEventListener('resize', detectBrowserAndOrientation);
+    // Update on resize (orientation change)
+    window.addEventListener('resize', detectBrowser);
+
     
     // Delay the appearance of the logo for a smoother page load
     const timer = setTimeout(() => {
@@ -38,7 +36,7 @@ export default function LogoCenter() {
     
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('resize', detectBrowserAndOrientation);
+      window.removeEventListener('resize', detectBrowser);
     };
   }, []);
   
@@ -60,32 +58,41 @@ export default function LogoCenter() {
             <div className={styles.logoContainer}>
               {/* Logo */}
               <div className={`relative z-10 ${styles.responsiveLogo}`}>
-                {/* Video with dynamically selected source */}
-                <video
-                  className={`w-full h-full object-contain ${styles.glowEffect}
-                    ${isVisible ? styles.visible : ''}
-                  `}
-                  src={videoSrc}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{ 
-                    animation: `${styles.intenseBlink} 1.12s infinite`,
-                    backgroundColor: 'transparent'
-                  }}
-                >
-                  {/* Fallback */}
-                  <div className="w-full h-full relative">
+                {isMobileOrSafari ? (
+                  /* For Safari and mobile devices - PNG image with transparency */
+                  <div className="w-full h-full relative bg-transparent">
                     <Image
-                      src="/finance.png"
+                      src="/financeapng.png"
                       alt="FINANCE"
                       fill
-                      style={{ objectFit: 'contain' }}
+                      style={{ 
+                        objectFit: 'contain',
+                        animation: `${styles.intenseBlink} 1.12s infinite`,
+                        backgroundColor: 'transparent',
+                        mixBlendMode: 'screen'
+                      }}
                       priority
+                      className={`${styles.glowEffect} ${isVisible ? styles.visible : ''}`}
+                      unoptimized={true}
                     />
                   </div>
-                </video>
+                ) : (
+                  /* For all other devices - WebM video with transparency */
+                  <video
+                    src="/finance.webm"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className={`w-full h-full object-contain ${styles.glowEffect}
+                      ${isVisible ? styles.visible : ''}
+                    `}
+                    style={{ 
+                      animation: `${styles.intenseBlink} 1.12s infinite`,
+                      backgroundColor: 'transparent'
+                    }}
+                  />
+                )}
               </div>
             </div>
           </div>

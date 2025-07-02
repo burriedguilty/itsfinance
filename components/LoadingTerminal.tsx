@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { mainBackground } from '@/config/sillyVideos';
+import styles from './LogoCenter.module.css';
 
 const VerticalRandomText = dynamic(() => import('@/components/VerticalRandomText'), { ssr: false });
 
@@ -60,15 +61,38 @@ export default function LoadingTerminal() {
       
       {/* Main content */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center">
-        <div className="mb-8">
-          <Image
-            src="/finance.png"
-            alt="Finance Logo"
-            width={200}
-            height={200}
-            className="object-contain"
-            priority
-          />
+        <div className="mb-8 relative bg-transparent">
+          <div className="relative w-[200px] h-[100px] bg-transparent">
+            {/* Use WebM for non-Safari browsers */}
+            <video
+              src="/finance.webm"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-contain hidden md:block"
+              style={{ 
+                animation: `${styles.intenseBlink} 1.12s infinite`,
+                backgroundColor: 'transparent',
+                mixBlendMode: 'screen'
+              }}
+            />
+            {/* Use APNG for Safari/mobile */}
+            <Image
+              src="/financeapng.png"
+              alt="Finance Logo"
+              fill
+              style={{ 
+                objectFit: 'contain',
+                animation: `${styles.intenseBlink} 0.8s infinite`,
+                backgroundColor: 'transparent',
+                mixBlendMode: 'screen'
+              }}
+              className="md:hidden block"
+              priority
+              unoptimized={true}
+            />
+          </div>
         </div>
         
         <p className="text-white font-georgia text-xl tracking-wider drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] text-shadow">
