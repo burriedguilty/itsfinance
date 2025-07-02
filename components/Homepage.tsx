@@ -42,14 +42,8 @@ function AnimatedTextCycle({ phrases, isSillyMode }: { phrases: string[], isSill
       }, 500); // Fade out duration
     }, 3000); // Change text every 3 seconds
 
-    // Fix for ref warning - store the current value inside the effect
-    const currentGlowRef = glowRef.current;
     return () => {
       clearInterval(interval);
-      // Use the captured value in cleanup
-      if (currentGlowRef) {
-        // Any cleanup needed for the ref
-      }
     };
   }, [phrases.length]);
 
@@ -159,6 +153,62 @@ export default function Homepage() {
 
       {/* Main content */}
       <main className={`container mx-auto px-4 py-8 relative z-30 ${isSillyMode ? 'chaos-distort' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+        {/* Mobile-only Financial World Order Section - Will appear first on mobile */}
+        <div className="block md:hidden mb-6">
+          <div className={`bg-gradient-to-br from-[#001830] to-[#000c24] neon-border p-4 transition-all duration-500 ${isSillyMode ? 'chaos-opacity bg-opacity-30 backdrop-blur-sm' : ''}`}>
+            <div className="text-center mb-3">
+              <h2 className={`!font-georgia text-2xl text-blue-300 mb-1 ${isSillyMode ? 'chaos-text-wave' : ''}`} style={{ '--chaos-duration': `${Math.random() * 1.5 + 0.5}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                WELCOME TO THE FINANCIAL WORLD ORDER
+              </h2>
+              <div className={`status-text recording text-sm font-georgia ${isSillyMode ? 'chaos-text-spin chaos-colors' : ''}`} style={{ '--chaos-duration': `${Math.random() * 2 + 1}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
+                FINANCE RUNS EVERYTHING
+              </div>
+            </div>
+            
+            <div className="space-y-4 text-blue-100 font-georgia">
+              <p className="text-center">
+                First it was salt, then gold, then paper backed by gold, then just paper.
+              </p>
+              <p className="text-center font-bold">
+                NOW IT&apos;S FUCK YOU. PEASANT.
+              </p>
+              <p className="text-center">
+                They print, you work. They fake debt, you pay it.
+              </p>
+              <p className="text-center">
+                Wake the fuck up and switch the narrative. Finance isn&apos;t controlled. Finance isn&apos;t taxed.
+              </p>
+              <p className="text-center">
+                FINANCE runs on hopium, risk, and size. No rules. No ceiling. No brakes.
+              </p>
+              <p className="text-center">
+                We are not suggesting. We are highjacking the economy.
+              </p>
+              <p className="text-center">
+                Visible. Psychotic. On chain.
+              </p>
+            </div>
+            
+            <div className="mt-4 flex justify-center">
+              <div className="w-full max-w-xs">
+                <video 
+                  src="/vid1.mp4" 
+                  className={`w-full h-auto filter drop-shadow-[0_0_8px_rgba(96,165,250,0.2)] ${isSillyMode ? 'chaos-zoom' : ''}`} 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                />
+              </div>
+            </div>
+            
+            <div className="mt-4 text-center">
+              <div className="inline-block text-blue-100 font-georgia text-lg font-medium animate-pulse-glow">
+                TRILLIONS • 富は健康 • TRILLIONS
+              </div>
+            </div>
+          </div>
+        </div>
         <div className={`grid grid-cols-1 lg:grid-cols-3 gap-6 ${isSillyMode ? 'chaos-shake-hard' : ''}`} style={{ '--chaos-duration': `${Math.random() * 0.5 + 0.3}s`, '--chaos-delay': `${Math.random()}s` } as React.CSSProperties}>
           {/* Left sidebar */}
           <div className={`space-y-4 ${isSillyMode ? 'chaos-random' : ''}`} style={{ '--random-duration': `${Math.random() * 3 + 1}s` } as React.CSSProperties}>
