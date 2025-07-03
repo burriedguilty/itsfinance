@@ -21,7 +21,7 @@
 
 .mainText {
   font-family: Georgia, serif;
-  font-size: 1.39rem;
+  font-size: 1.75rem;
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.4);
   font-weight: normal;
@@ -31,22 +31,25 @@
   position: relative;
   z-index: 1;
   font-family: Georgia;
+  letter-spacing: 1px;
 }
 
 /* Responsive text sizes */
 @media (max-width: 768px) {
   .mainText {
-    font-size: 0.7rem;
+    font-size: 1.0rem;
     letter-spacing: 1px;
     font-family: Georgia;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 16px rgba(255, 255, 255, 0.4);
   }
 }
 
 @media (max-width: 480px) {
   .mainText {
-    font-size: 0.6rem;
-    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    letter-spacing: 0.8px;
     font-family: Georgia;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 16px rgba(255, 255, 255, 0.4);
   }
 }
 
