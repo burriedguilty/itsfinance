@@ -404,6 +404,14 @@ export default function Homepage() {
                   X
                 </a>
                 <a 
+                  href="https://t.me/FinanceCoinSOL" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className={`px-5 py-2 bg-[#001428] border border-blue-400/50 text-blue-300 hover:border-blue-300 hover:text-blue-100 transition-all duration-300 rounded-md font-georgia tracking-wider shadow-sm shadow-blue-500/20 button-glow font-georgia ${isSillyMode ? 'chaos-bounce chaos-colors chaos-border bg-opacity-30 backdrop-blur-sm' : ''}`}
+                >
+                  TG
+                </a>
+                <a 
                   href="https://x.com/i/communities/1936427386675089602" 
                   target="_blank" 
                   rel="noopener noreferrer" 
