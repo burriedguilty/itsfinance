@@ -20,29 +20,73 @@
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .logoContainer {
-    width: 70vw;
-    height: 30vw;
-    max-height: 300px;
+    width: 80vw;
+    height: 45vw;
+    max-height: 450px;
   }
   
   .responsiveLogo {
-    width: 60vw;
-    height: 25vw;
-    max-height: 200px;
+    width: 75vw;
+    height: 40vw;
+    max-height: 400px;
+  }
+}
+
+/* Specific adjustment for ~1151x1036 resolution */
+@media (min-width: 1000px) and (max-width: 1199px) {
+  .logoContainer {
+    width: 85vw;
+    height: 50vw;
+    max-height: 500px;
+  }
+  
+  .responsiveLogo {
+    width: 80vw;
+    height: 45vw;
+    max-height: 450px;
+  }
+}
+
+@media (max-width: 999px) {
+  .logoContainer {
+    width: 90vw;
+    height: 60vw;
+    max-height: 400px;
+  }
+  
+  .responsiveLogo {
+    width: 85vw;
+    height: 55vw;
+    max-height: 380px;
   }
 }
 
 @media (max-width: 768px) {
   .logoContainer {
-    width: 80vw;
-    height: 40vw;
-    max-height: 200px;
+    width: 95vw;
+    height: 65vw;
+    max-height: 350px;
   }
   
   .responsiveLogo {
-    width: 70vw;
-    height: 35vw;
-    max-height: 180px;
+    width: 90vw;
+    height: 60vw;
+    max-height: 330px;
+  }
+}
+
+/* Additional smaller screen sizes */
+@media (max-width: 480px) {
+  .logoContainer {
+    width: 95vw;
+    height: 60vw;
+    max-height: 300px;
+  }
+  
+  .responsiveLogo {
+    width: 90vw;
+    height: 55vw;
+    max-height: 280px;
   }
 }
 
